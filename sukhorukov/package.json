@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --mode development",
-    "dev-server": "webpack-dev-server --mode development --port 4000 --open",
-    "build": "webpack --mode production"
+    "prod": "webpack --mode production",
+    "serv": "webpack-dev-server --mode development --port 4000 --open"
   },
   "keywords": [],
   "author": "Sukhorukov Ruslan <suhrugen@gmail.com>",
