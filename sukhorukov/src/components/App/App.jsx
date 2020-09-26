@@ -1,8 +1,8 @@
 import React from 'react'
-import Messages from './Messages'
-import Input from './Input'
+import {Messages} from '../Messages'
+import {Input} from '../Input'
 
-export default class App extends React.Component {
+export class App extends React.Component {
     state = {
         messages: [
             {author: 'robot', text: 'Я робот, сообщите мне что-нибудь, я отвечаю через секунду ...'}
@@ -20,9 +20,10 @@ export default class App extends React.Component {
         }
     }
 
-    sendHandler = (buffer) => {
-        const {bufferText: text, bufferAuthor: author} = buffer
-        this.setState({messages: this.state.messages.concat({author: author, text: text})})
+    sendHandler = (input) => {
+        const {inputText: text, inputAuthor: author} = input
+        this.setState({messages: [...this.state.messages, {author: author, text: text}]})
+        // this.setState({messages: this.state.messages.concat({author: author, text: text})})
     }
 
     render() {
