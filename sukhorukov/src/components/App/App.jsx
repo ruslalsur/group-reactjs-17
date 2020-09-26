@@ -5,7 +5,8 @@ import {Input} from '../Input'
 export class App extends React.Component {
     state = {
         messages: [
-            {author: 'robot', text: 'Я робот, сообщите мне что-нибудь, я отвечаю через секунду ...'}
+            {author: 'robot', text: 'Можно ввести имя сообщателя и изменить его кнопкой слева'},
+            {author: 'robot', text: 'Можно ввести сообщение и отправить его кнопкой справа'}
         ]
     }
 
@@ -13,17 +14,23 @@ export class App extends React.Component {
         const {author, text} = this.state.messages[this.state.messages.length - 1]
 
         if (author != 'robot') {
-            setTimeout(() => this.setState({messages: this.state.messages.concat({
-                author: 'robot',
-                text: `Спасибо тебе, ${author}, за твое сообщение про "${text}"`
-            })}), 1000)
+            setTimeout(() => this.setState(
+                {messages: 
+                    [
+                        ...this.state.messages, 
+                        {
+                            author: 'robot',
+                            text: `Спасибо тебе, ${author}, за твое сообщение про "${text}"`
+                        }
+                    ]
+                }
+            ), 1000)
         }
     }
 
     sendHandler = (input) => {
         const {inputText: text, inputAuthor: author} = input
         this.setState({messages: [...this.state.messages, {author: author, text: text}]})
-        // this.setState({messages: this.state.messages.concat({author: author, text: text})})
     }
 
     render() {

@@ -43,7 +43,7 @@ export class Input extends React.Component {
                     name="inputText"
                     value={input}
                     title="Введите имя сообщателя или текст сообщения и нажмите соответствующую кнопку"
-                    placeholder="Сообщатель или сообщение ..." />
+                    placeholder="сообщатель или сообщение" />
                 </span> 
 
                 {input && <span> <button onClick={this.sendOnClickHandler}>Сообщить</button></span>}
