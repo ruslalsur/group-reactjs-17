@@ -2,6 +2,7 @@ import React from 'react'
 import Type from 'prop-types'
 import {Button, TextField, Box, Fab} from '@material-ui/core'
 import MailOutlineRoundedIcon from '@material-ui/icons/MailOutlineRounded'
+import './sender.sass'
 
 export class Sender extends React.Component {
     state = {
@@ -35,7 +36,7 @@ export class Sender extends React.Component {
            
       return (
          <>
-            <Box mr={3}>
+            <Box mr={1}>
                <Button
                   onClick={this.authorChangeHandler}
                   color="primary"
@@ -44,7 +45,7 @@ export class Sender extends React.Component {
                </Button>
             </Box>
 
-            <Box mr={3}>
+            <Box className="text-input" mr={3}>
                <TextField
                   onChange={this.inputEventHandler}
                   onKeyDown={this.messageSendHandler}
@@ -53,6 +54,11 @@ export class Sender extends React.Component {
                   value={text}
                   title="Имя сообщателя или текст сообщения"
                   label="сообщатель или сообщение"
+                  fullWidth
+                  rows={2}
+                  rowsMax={2}
+                  size="small"
+                  variant="outlined"
                   multiline
                   autoFocus />
             </Box> 
