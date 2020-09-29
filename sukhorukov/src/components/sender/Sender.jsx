@@ -1,6 +1,6 @@
 import React from 'react'
 import Type from 'prop-types'
-import {Avatar, Button, TextField, Box} from '@material-ui/core'
+import {Button, TextField, Box} from '@material-ui/core'
 
 export class Sender extends React.Component {
     state = {
@@ -34,14 +34,14 @@ export class Sender extends React.Component {
            
       return (
          <>
-         <Box mr={3}>
+            <Box mr={3}>
                <Button
                   onClick={this.authorChangeHandler}
                   variant="outlined"
                   title="Кнопка нажимается после ввода имени сообщателя">
                      {author}
                </Button>
-               </Box>
+            </Box>
 
             <Box mr={3}>
                <TextField
@@ -56,16 +56,16 @@ export class Sender extends React.Component {
             </Box> 
             
             {text &&
-               <Box>
-                  <Button 
-                     onClick={this.messageSendHandler}
-                     variant="contained"
-                     color="primary"
-                     size="large"
-                     title="Отправить сообщения">
-                        Сообщить
-                  </Button>
-               </Box>}
+            <Box>
+               <Button 
+                  onClick={this.messageSendHandler}
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  title="Отправить сообщения">
+                     Сообщить
+               </Button>
+            </Box>}
          </>
       )
     }

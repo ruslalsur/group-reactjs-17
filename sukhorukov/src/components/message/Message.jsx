@@ -1,6 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
-import {Avatar, Button, TextField, Paper} from '@material-ui/core'
+import {Avatar, Paper} from '@material-ui/core'
 import './message.sass'
 
 
