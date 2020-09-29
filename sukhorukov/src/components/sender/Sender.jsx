@@ -37,9 +37,9 @@ export class Sender extends React.Component {
             <Box mr={3}>
                <Button
                   onClick={this.authorChangeHandler}
-                  variant="outlined"
-                  title="Кнопка нажимается после ввода имени сообщателя">
-                     {author}
+                  color="primary"
+                  title="Это нажимается после ввода имени сообщателя">
+                     {author}:
                </Button>
             </Box>
 
@@ -47,7 +47,6 @@ export class Sender extends React.Component {
                <TextField
                   onChange={this.inputEventHandler}
                   onKeyDown={this.messageSendHandler}
-                  variant="outlined"
                   id="text"
                   name="text"
                   value={text}

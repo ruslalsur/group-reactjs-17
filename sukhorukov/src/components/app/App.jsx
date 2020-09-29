@@ -16,7 +16,7 @@ export class App extends React.Component {
          {
                id: nanoid(),
                author: 'robot',
-               text: 'Можно ввести имя сообщателя и изменить его кнопкой слева'
+               text: 'Можно ввести новое имя сообщателя и нажать на старое для применения изменений'
          }, {
                id: nanoid(),
                author: 'robot',
