@@ -38,6 +38,9 @@ export class App extends React.Component {
 
          this.setState({robotCanAnswer: false})
       }
+
+      const blockToScroll = document.getElementById("scroll")
+      blockToScroll.scrollTop = blockToScroll.scrollHeight
    }
 
    addNewMessage = (message) => {
@@ -88,7 +91,7 @@ export class App extends React.Component {
                </Paper>
                </Grid>
                <Grid item xs={9}>
-                  <Paper className="messeges"elevation={3}>
+                  <Paper id="scroll" className="messages"elevation={3}>
                      <Messages messages={messages} />
                   </Paper>
                   <Box component="div" className="sender">
