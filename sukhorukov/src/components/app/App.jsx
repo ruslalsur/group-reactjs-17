@@ -88,14 +88,12 @@ export class App extends React.Component {
                </Paper>
                </Grid>
                <Grid item xs={9}>
-                  {/* <div className="messenger"> */}
-                     <Paper className="messeges"elevation={3}>
-                        <Messages messages={messages} />
-                     </Paper>
-                     <Box component="div" className="sender">
-                        <Sender accessToAppState={this.addNewMessage} />
-                     </Box>
-                  {/* </div> */}
+                  <Paper className="messeges"elevation={3}>
+                     <Messages messages={messages} />
+                  </Paper>
+                  <Box component="div" className="sender">
+                     <Sender accessToAppState={this.addNewMessage} />
+                  </Box>
                </Grid>
             </Grid> 
          </div>
