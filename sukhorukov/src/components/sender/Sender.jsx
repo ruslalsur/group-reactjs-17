@@ -1,6 +1,7 @@
 import React from 'react'
 import Type from 'prop-types'
-import {Button, TextField, Box} from '@material-ui/core'
+import {Button, TextField, Box, Fab} from '@material-ui/core'
+import MailOutlineRoundedIcon from '@material-ui/icons/MailOutlineRounded'
 
 export class Sender extends React.Component {
     state = {
@@ -51,19 +52,21 @@ export class Sender extends React.Component {
                   name="text"
                   value={text}
                   title="Имя сообщателя или текст сообщения"
-                  label="сообщатель или сообщение" />
+                  label="сообщатель или сообщение"
+                  multiline
+                  autoFocus />
             </Box> 
             
             {text &&
             <Box>
-               <Button 
+               <Fab 
                   onClick={this.messageSendHandler}
-                  variant="contained"
+                  variant="round"
                   color="primary"
-                  size="large"
+                  size="small"
                   title="Отправить сообщения">
-                     Сообщить
-               </Button>
+                     <MailOutlineRoundedIcon />
+               </Fab>
             </Box>}
          </>
       )
