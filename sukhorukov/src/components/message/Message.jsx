@@ -11,19 +11,6 @@ export class Message extends React.Component {
       const {author, text} = this.props.message
       const avatarLetters = author.slice(0,1).toUpperCase()
 
-      const useStyles = makeStyles((theme) => ({
-         orange: {
-           color: theme.palette.getContrastText(deepOrange[500]),
-           backgroundColor: deepOrange[500],
-         },
-         purple: {
-           color: theme.palette.getContrastText(deepPurple[500]),
-           backgroundColor: deepPurple[500],
-         },
-      }))
-
-      const avatarClasses = useStyles
-
       const classes = classNames('msg', {
          'msg-left': author === 'robot',
          'msg-right': author !== 'robot',
