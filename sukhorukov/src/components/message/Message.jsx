@@ -1,10 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
-import { makeStyles } from '@material-ui/core/styles'
 import {Avatar, Paper, Box} from '@material-ui/core'
-import { deepOrange, deepPurple } from '@material-ui/core/colors'
 import './message.sass'
-
 
 export class Message extends React.Component {
     render() {   
@@ -18,13 +15,12 @@ export class Message extends React.Component {
 
       return (   
          <div className={classes}>
-            <div>
-               <Paper className="msg-content" elevation={1}>
-                  <Avatar><Box className="msg-avatar-leter">{avatarLetters}</Box></Avatar>
-                  <span style={{marginLeft: "0.6rem"}}>{text}</span>
-               </Paper>
-            </div>
-         </div>
+            <Paper className="msg-content" elevation={5}>
+               <Avatar><Box className="msg-avatar-leter">{avatarLetters}</Box></Avatar>
+
+               <span style={{marginLeft: "0.6rem"}}>{text}</span>
+            </Paper>
+         </div> 
       )
     }
 }

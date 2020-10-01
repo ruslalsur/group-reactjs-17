@@ -16,7 +16,7 @@ export class App extends React.Component {
          {
                id: nanoid(),
                author: 'robot',
-               text: 'Можно ввести новое имя сообщателя и нажать на старое для применения изменений'
+               text: 'Можно ввести новое имя автора и нажать на старое для применения изменений'
          }, {
                id: nanoid(),
                author: 'robot',
@@ -61,10 +61,10 @@ export class App extends React.Component {
 
       return (
          <div className="layout">  
-            <div className="header">
-               <span>geekMessenger</span>
-               <span>{messages[messages.length - 1].author}</span>
-            </div>
+            <Paper className="header"  elevation={3}>
+               <Box>geekMessenger</Box>
+               <Box>{messages[messages.length - 1].author}</Box>
+            </Paper>
             <Grid container alignItems="stretch" spacing={2}>
                <Grid item xs={3}>
                <Paper  className="charts" elevation={3}>
@@ -91,12 +91,12 @@ export class App extends React.Component {
                </Paper>
                </Grid>
                <Grid item xs={9}>
-                  <Paper id="scroll" className="messages"elevation={3}>
+                  <Paper id="scroll" className="messages" elevation={3}>
                      <Messages messages={messages} />
                   </Paper>
-                  <Box component="div" className="sender">
+                  <Paper className="sender" elevation={3}>
                      <Sender accessToAppState={this.addNewMessage} />
-                  </Box>
+                  </Paper>
                </Grid>
             </Grid> 
          </div>
