@@ -18,8 +18,6 @@ export class Chats extends React.Component {
 
    render() {
       const {chats} = this.props
-      const {match} = this.props
-      console.log(match)
          
       const chatList = chats.list.map((item) => {
          return (
