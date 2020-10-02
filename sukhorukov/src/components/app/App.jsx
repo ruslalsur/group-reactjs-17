@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {nanoid} from 'nanoid'
-import {Avatar, Typography, Grid, Paper, Box, IconButton} from '@material-ui/core'
+import {Typography, Grid, Paper, Box, IconButton} from '@material-ui/core'
 import Alert from '@material-ui/lab/Alert'
 import PersonIcon from '@material-ui/icons/Person'
 import chats from '../chats/chatsSampleData.js'
@@ -38,6 +38,25 @@ export class App extends React.Component {
       blockToScroll.scrollTop = blockToScroll.scrollHeight
    }
 
+   addChat = (title) => {
+      const {chats} = this.state
+      const {match} = this.props
+      const newId = chats.list.length
+      const newChat = {
+         id: newId,
+         title: title,
+         messages: [
+            {
+               id: 0,
+               author: "robot",
+               text: `${chats.currentAuthor}, Вы создали новый чат с названием "${title}"`
+           }
+         ]
+     }
+      chats.list.push(newChat)
+      this.setState({chats})
+   }
+   
    addMessage = (message) => {
       const {chats} = this.state
       const {match} = this.props
@@ -71,7 +90,7 @@ export class App extends React.Component {
                
                {/* чаты */}
                <Grid item xs={3}>
-                  <Chats chats={chats}/>
+                  <Chats chats={chats} accessToAppState={(title) => this.addChat(title)}/>
                </Grid>
 
                {/* сообщения */}

@@ -12,7 +12,8 @@ import './chats.sass'
 
 export class Chats extends React.Component {
    addChatHandler = () => {
-      //TODO: реализовать добавление чатов
+      const title = 'new chat'
+      this.props.accessToAppState(title)
    }
 
    render() {
