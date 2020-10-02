@@ -23,7 +23,7 @@ export class Chats extends React.Component {
          return (
 
             <Link key={item.id} to={`/chat/${item.id}`}>
-               <ListItem key={item.id} button>
+               <ListItem key={item.id} button selected={this.props.currentChatId == item.id ? true : false}> 
                   <ListItemIcon>
                      <Badge badgeContent={item.messages.length} color="default">
                         <ForumOutlinedIcon />

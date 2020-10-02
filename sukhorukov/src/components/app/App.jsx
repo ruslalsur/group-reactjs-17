@@ -91,7 +91,8 @@ export class App extends React.Component {
                {/* чаты */}
                <Grid item xs={3}>
                   <Chats 
-                     chats={chats} 
+                     chats={chats}
+                     currentChatId={match.params.id}
                      addChatDisable={match.path === "/" ? true : false}
                      accessToAppState={(title) => this.addChat(title)}/>
                </Grid>
