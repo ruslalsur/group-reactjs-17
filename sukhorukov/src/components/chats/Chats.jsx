@@ -12,13 +12,14 @@ import './chats.sass'
 
 export class Chats extends React.Component {
    addChatHandler = () => {
-      const title = 'new chat'
+      const title = 'Новый чат'
       this.props.accessToAppState(title)
    }
 
    render() {
       const {chats} = this.props
       const {match} = this.props
+      console.log(match)
          
       const chatList = chats.list.map((item) => {
          return (
@@ -45,6 +46,7 @@ export class Chats extends React.Component {
             </Box>
             <Box className="add-btn">
                <Fab 
+                  disabled={this.props.addChatDisable}
                   onClick={this.addChatHandler}
                   variant="round"
                   color="primary"
