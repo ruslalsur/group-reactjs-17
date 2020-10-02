@@ -1,6 +1,6 @@
 import React from 'react'
 import Type from 'prop-types'
-import {Button, TextField, Box, Fab, Tooltip} from '@material-ui/core'
+import {Button, TextField, Box, Fab, Typography, Tooltip} from '@material-ui/core'
 import CheckIcon from '@material-ui/icons/Check'
 import './sender.sass'
 
@@ -26,36 +26,25 @@ export class Sender extends React.Component {
       }
     }
 
-    authorChangeHandler = () => {
-        const {text} = this.state
-        text && this.setState({author: text, text: ''}) 
-    }
+   //  authorChangeHandler = () => {
+   //      const {text} = this.state
+   //      text && this.setState({author: text, text: ''}) 
+   //  }
 
     render() {   
       const {text, author} = this.state
            
       return (
          <>
-            <Tooltip title="Это нажимается после ввода НОВОГО имени автора" aria-label="Автор">
-               <Box className="author">
-                  <Button
-                     onClick={this.authorChangeHandler}
-                     color="primary"
-                     size="large">
-                        {author}:
-                  </Button>
-               </Box>
-            </Tooltip>
-
-            <Tooltip title="Новое имя автора или текст сообщения" aria-label="Teкст">
-               <Box className="text-input" mr={2}>
+            <Tooltip title="текст сообщения" aria-label="Teкст">
+               <Box className="text-input" ml={2} mr={2}>
                   <TextField
                      onChange={this.inputEventHandler}
                      onKeyDown={this.messageSendHandler}
                      id="text"
                      name="text"
                      value={text}
-                     label="автор или сообщение"
+                     label={author}
                      fullWidth
                      rows={1}
                      rowsMax={2}

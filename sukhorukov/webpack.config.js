@@ -11,11 +11,10 @@ module.exports = {
     resolve: {
       extensions: ['.js', '.jsx'],
       alias: {
-        components: path.join(__dirname, 'src', 'components')
+        components: path.join(__dirname, 'src', 'components'),
+        pages: path.join(__dirname, 'src', 'pages')
       }
     },
-
-    devtool: 'eval-source-map',
 
     module: {
         rules: [
@@ -53,4 +52,10 @@ module.exports = {
           filename: 'app.css',
         })
     ],
+
+    devServer: {
+      historyApiFallback: true,
+    },
+
+    devtool: 'eval-source-map'
 }

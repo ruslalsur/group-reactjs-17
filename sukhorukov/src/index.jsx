@@ -1,10 +1,13 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import {App} from './components/app'
+import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import {routes} from './routes'
 
 ReactDom.render(
-    <>
-        <App />
-    </>, 
+    <BrowserRouter>
+       <Switch>
+           {routes.map((item, index) => (<Route key={index} {...item} />))}
+       </Switch>
+    </BrowserRouter>, 
     document.getElementById('root')
 )

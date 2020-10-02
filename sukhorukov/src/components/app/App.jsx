@@ -1,39 +1,33 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import {nanoid} from 'nanoid'
-import {Grid, Paper, Box} from '@material-ui/core'
-import List from '@material-ui/core/List'
-import ListItem, { ListItemProps } from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
-import ForumOutlinedIcon from '@material-ui/icons/ForumOutlined'
+import {Avatar, Typography, Grid, Paper, Box, IconButton} from '@material-ui/core'
+import PersonIcon from '@material-ui/icons/Person'
+import chats from '../chats/chatsSampleData.js'
+import {Chats} from '../chats'
 import {Messages} from '../messages'
 import {Sender} from '../sender'
 import './app.sass'
 
 export class App extends React.Component {
    state = {
-      messages: [
-         {
-               id: nanoid(),
-               author: 'robot',
-               text: 'Можно ввести новое имя автора и нажать на старое для применения изменений'
-         }, {
-               id: nanoid(),
-               author: 'robot',
-               text: 'Можно ввести сообщение и отправить его кнопкой, которая появится справа'
-         }
-      ],
+      chats,
       robotCanAnswer: true
    }
 
    componentDidUpdate() {
-      const {author} = this.state.messages[this.state.messages.length - 1]
+      const {chats} = this.state
+      const {match} = this.props
+
+      const author = chats.list[match.params.id].messages[chats.list[match.params.id].messages.length - 1].author
       const {robotCanAnswer} = this.state
 
       if (author !== 'robot' && robotCanAnswer) {
          setTimeout(() => {
-               this.addNewMessage({author: 'robot', text: `Спасибо тебе, ${author}, за информацию`})
+            if (author !== 'robot') {
+               this.addMessage({author: 'robot', text: `Спасибо тебе, ${author}, за информацию`})
                this.setState({robotCanAnswer: true})
+            }
          }, 3000)
 
          this.setState({robotCanAnswer: false})
@@ -43,59 +37,51 @@ export class App extends React.Component {
       blockToScroll.scrollTop = blockToScroll.scrollHeight
    }
 
-   addNewMessage = (message) => {
-      const {author, text} = message
-      this.setState({
-         messages: [
-               ...this.state.messages, {
-                  id: nanoid(),
-                  author: author,
-                  text: text
-               }
-         ]
-      })
+   addMessage = (message) => {
+      const {chats} = this.state
+      const {match} = this.props
+      message.id = nanoid()
+      chats.list[match.params.id].messages.push(message)
+      this.setState({chats})
    }
 
    render() {
-      const {messages} = this.state
+      const {chats} = this.state
+      const {match} = this.props
 
       return (
          <div className="layout">  
+
+            {/* заголовок */}
             <Paper className="header"  elevation={3}>
-               <Box>geekMessenger</Box>
-               <Box>{messages[messages.length - 1].author}</Box>
+               <Box className="header-app-name">geekMessenger</Box>
+               {/* <Box>
+                  <Typography variant="body1">
+                     <Link to={`/profile/${chats.list[chats.current].messages[0].author}`}>
+                        <IconButton edge="start" color="inherit" aria-label="profile">
+                           <PersonIcon color="action" />   
+                        </IconButton>
+                     </Link>
+                  </Typography>
+               </Box> */}
             </Paper>
+         
             <Grid container alignItems="stretch" spacing={2}>
+               
+               {/* чаты */}
                <Grid item xs={3}>
-               <Paper  className="charts" elevation={3}>
-                  <List component="nav" aria-label="main mailbox folders">
-                     <ListItem button>
-                       <ListItemIcon>
-                         <ForumOutlinedIcon />
-                       </ListItemIcon>
-                       <ListItemText primary="Чат1" />
-                     </ListItem>
-                     <ListItem button>
-                       <ListItemIcon>
-                         <ForumOutlinedIcon />
-                       </ListItemIcon>
-                       <ListItemText primary="Чат2" />
-                     </ListItem>
-                     <ListItem button>
-                       <ListItemIcon>
-                         <ForumOutlinedIcon />
-                       </ListItemIcon>
-                       <ListItemText primary="Чат3" />
-                     </ListItem>
-                  </List>
-               </Paper>
+                  <Chats chats={chats}/>
                </Grid>
+
+               {/* сообщения */}
                <Grid item xs={9}>
                   <Paper id="scroll" className="messages" elevation={3}>
-                     <Messages messages={messages} />
+                     <Messages messages={chats.list[match.params.id].messages} />
                   </Paper>
+                  
+                  {/* посылатель */}
                   <Paper className="sender" elevation={3}>
-                     <Sender accessToAppState={this.addNewMessage} />
+                     <Sender accessToAppState={this.addMessage} />
                   </Paper>
                </Grid>
             </Grid> 
