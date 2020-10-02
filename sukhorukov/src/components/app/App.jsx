@@ -55,15 +55,15 @@ export class App extends React.Component {
             {/* заголовок */}
             <Paper className="header"  elevation={3}>
                <Box className="header-app-name">geekMessenger</Box>
-               {/* <Box>
+               <Box>
                   <Typography variant="body1">
-                     <Link to={`/profile/${chats.list[chats.current].messages[0].author}`}>
+                     <Link to={`/profile/${chats.currentAuthor}`}>
                         <IconButton edge="start" color="inherit" aria-label="profile">
                            <PersonIcon color="action" />   
                         </IconButton>
                      </Link>
                   </Typography>
-               </Box> */}
+               </Box>
             </Paper>
          
             <Grid container alignItems="stretch" spacing={2}>
@@ -76,7 +76,7 @@ export class App extends React.Component {
                {/* сообщения */}
                <Grid item xs={9}>
                   <Paper id="scroll" className="messages" elevation={3}>
-                     <Messages messages={chats.list[match.params.id].messages} />
+                     {match.params.id ? <Messages messages={chats.list[match.params.id].messages} /> : <div>Выберите чат слева</div>} 
                   </Paper>
                   
                   {/* посылатель */}
