@@ -1,4 +1,5 @@
 const chats = {
+    currentAuthor: 'Вася',
     list: [
         {
             id: 0,
