@@ -11,7 +11,7 @@ import AddIcon from '@material-ui/icons/Add'
 import './chats.sass'
 
 export class Chats extends React.Component {
-   addChathandler = () => {
+   addChatHandler = () => {
       //TODO: реализовать добавление чатов
    }
 

@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {nanoid} from 'nanoid'
 import {Avatar, Typography, Grid, Paper, Box, IconButton} from '@material-ui/core'
+import Alert from '@material-ui/lab/Alert'
 import PersonIcon from '@material-ui/icons/Person'
 import chats from '../chats/chatsSampleData.js'
 import {Chats} from '../chats'
@@ -76,7 +77,9 @@ export class App extends React.Component {
                {/* сообщения */}
                <Grid item xs={9}>
                   <Paper id="scroll" className="messages" elevation={3}>
-                     {match.params.id ? <Messages messages={chats.list[match.params.id].messages} /> : <div>Выберите чат слева</div>} 
+                     {match.params.id 
+                     ? <Messages messages={chats.list[match.params.id].messages} /> 
+                     : <Alert variant="filled" severity="info">Выберите чат слева</Alert>} 
                   </Paper>
                   
                   {/* посылатель */}
