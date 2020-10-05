@@ -9,29 +9,7 @@ import {Sender} from '../sender'
 import './messenger.sass'
 
 export class Messenger extends React.Component {
-   // state = {
-   //    chats,
-   //    robotCanAnswer: true
-   // }
-
    componentDidUpdate() {
-      // const {chats} = this.state
-      // const {match} = this.props
-
-      // const author = chats.list[match.params.id].messages[chats.list[match.params.id].messages.length - 1].author
-      // const {robotCanAnswer} = this.state
-
-      // if (author !== 'robot' && robotCanAnswer) {
-      //    setTimeout(() => {
-      //       if (author !== 'robot') {
-      //          this.addMessage({author: 'robot', text: `Спасибо тебе, ${author}, за информацию`})
-      //          this.setState({robotCanAnswer: true})
-      //       }
-      //    }, 3000)
-
-      //    this.setState({robotCanAnswer: false})
-      // }
-
       const blockForScroll = document.getElementById("scroll")
       blockForScroll.scrollTop = blockForScroll.scrollHeight
    }
@@ -46,20 +24,23 @@ export class Messenger extends React.Component {
          handleChatAdd
       } = this.props
 
+      const chatTitle = chats[currentChatId] ? chats[currentChatId].title : ''
+
       return (
          <div className="layout">
 
             {/* заголовок (header)*/}
             <Paper className="header"  elevation={3}>
                <Box className="header-app-name">geekMessenger</Box>
-               <Box>
-                  <Link to={`/profile`}>
-                     <IconButton edge="start" color="inherit" aria-label="profile">
-                        <PersonIcon color="action" />
-                     </IconButton>
-                     <Typography variant="body1">{author}</Typography>
-                  </Link>
+               <Box className="header-chat-name">
+                  {chatTitle}
                </Box>
+               <Link className="header-profile" to={`/profile`}>
+                  <IconButton edge="start" color="inherit" aria-label="profile">
+                     <PersonIcon color="action" />
+                  </IconButton>
+                  <Box>{author}</Box>
+               </Link>
             </Paper>
 
             <Grid container alignItems="stretch" spacing={2}>
