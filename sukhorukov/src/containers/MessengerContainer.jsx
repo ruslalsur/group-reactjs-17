@@ -3,10 +3,12 @@ import {connect} from 'react-redux'
 import {nanoid} from 'nanoid'
 import {Messenger} from '../components/messenger'
 import {chatsGetAction, chatsAddAction, chatsMessageSendAction} from '../actions/chatsActions'
+import {profileGetAction} from '../actions/profileActions'
 
 class MessengerContainerClass extends React.Component {
    componentDidMount() {
       this.props.getChats()
+      this.props.getProfile()
    }
 
    handleChatAdd = (title) => {
@@ -24,10 +26,11 @@ class MessengerContainerClass extends React.Component {
    }
 
    render() {
-      const {chats, messages, currentChatId} = this.props
+      const {author, chats, messages, currentChatId} = this.props
 
       return (
          <Messenger
+            author={author}
             chats={chats}
             currentChatId={currentChatId}
             messages={messages}
@@ -39,6 +42,7 @@ class MessengerContainerClass extends React.Component {
 
 function mapStateToProps(state, ownProps) {
    const {chats} = state.chatsReducer
+   const {profile} = state.profileReducer
    const {match} = ownProps
 
    let messages = null
@@ -59,6 +63,7 @@ function mapStateToProps(state, ownProps) {
    }
 
    return {
+      author: profile.name,
       chats: chatsArray,
       messages,
       currentChatId: match
@@ -69,6 +74,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
    return {
+      getProfile: () => dispatch(profileGetAction()),
       getChats: () => dispatch(chatsGetAction()),
       addChat: (title) => dispatch(chatsAddAction(title)),
       sendMessage: (message) => dispatch(chatsMessageSendAction(message))

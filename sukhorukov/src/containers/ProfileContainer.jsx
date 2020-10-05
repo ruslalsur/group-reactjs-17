@@ -2,25 +2,29 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {nanoid} from 'nanoid'
 import {Profile} from '../components/profile'
-import {profileGetAction} from '../actions/profileActions'
+import {profileGetAction, profileChangeAction} from '../actions/profileActions'
 
 class ProfileContainerClass extends React.Component {
    componentDidMount() {
       this.props.getProfile()
    }
 
+   handleProfileChange = (title) => {
+      const {profileChange} = this.props
+      profileChange(title)
+   }
+
    render() {
-      const {id, name} = this.props
+      const {id, name, handleProfileChange} = this.props
 
       return (
-         <Profile id={id} name={name} />
+         <Profile id={id} name={name} handleProfileChange={this.handleProfileChange}/>
       )
    }
 }
 
 function mapStateToProps(state, ownProps) {
    const {profile} = state.profileReducer
-   console.log(profile);
 
    return {
       id: profile.id,
@@ -30,7 +34,8 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
    return {
-      getProfile: () => dispatch(profileGetAction())
+      getProfile: () => dispatch(profileGetAction()),
+      profileChange: (name) => dispatch(profileChangeAction(name))
    }
 }
 

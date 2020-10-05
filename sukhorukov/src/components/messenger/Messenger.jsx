@@ -37,7 +37,14 @@ export class Messenger extends React.Component {
    }
 
    render() {
-      const {currentChatId, chats, messages, handleMessageSend, handleChatAdd} = this.props
+      const {
+         currentChatId,
+         author,
+         chats,
+         messages,
+         handleMessageSend,
+         handleChatAdd
+      } = this.props
 
       return (
          <div className="layout">
@@ -46,13 +53,12 @@ export class Messenger extends React.Component {
             <Paper className="header"  elevation={3}>
                <Box className="header-app-name">geekMessenger</Box>
                <Box>
-                  <Typography variant="body1">
-                     <Link to={`/profile`}>
-                        <IconButton edge="start" color="inherit" aria-label="profile">
-                           <PersonIcon color="action" />
-                        </IconButton>
-                     </Link>
-                  </Typography>
+                  <Link to={`/profile`}>
+                     <IconButton edge="start" color="inherit" aria-label="profile">
+                        <PersonIcon color="action" />
+                     </IconButton>
+                     <Typography variant="body1">{author}</Typography>
+                  </Link>
                </Box>
             </Paper>
 

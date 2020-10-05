@@ -1,6 +1,6 @@
 import update from 'react-addons-update'
 import {nanoid} from 'nanoid'
-import {PROFILE_GET} from '../actions/profileActions'
+import {PROFILE_GET, PROFILE_CHANGE} from '../actions/profileActions'
 import {defaultProfile} from '../helpers/defaultProfileData'
 
 const initialState = {
@@ -16,6 +16,9 @@ export const profileReducer = (state = initialState, action) => {
             ...state,
             profile: defaultProfile
          }
+
+      case PROFILE_CHANGE:
+         return update(state, {profile: {name: {$set: action.name}}})
 
       default:
          return state
