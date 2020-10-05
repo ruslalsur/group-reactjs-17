@@ -4,18 +4,19 @@ import {Box} from '@material-ui/core'
 
 export class Profile extends React.Component {
    render() {
-   const name = this.props.match.params.name
-   
+      const {id, name} = this.props
+
       return (
          <>
             <div>
-               <h1>{name}</h1>
-               <p>Здесь, {name}, когда-нибудь, будет реализован твой профиль!</p>
+               <h1>Профиль пользователя</h1>
+               <h4>Присвоеный идентификатор: {id}</h4>
+               <h4>Имя автора: {name}</h4>
             </div>
 
             <div>
                <Link to="/">
-                  <Box>на главную</Box>
+                  <Box>назад</Box>
                </Link>
             </div>
          </>

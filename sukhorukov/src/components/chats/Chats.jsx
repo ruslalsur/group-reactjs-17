@@ -12,25 +12,26 @@ import './chats.sass'
 
 export class Chats extends React.Component {
    addChatHandler = () => {
-      const title = 'Новый чат'
-      this.props.accessToAppState(title)
+      const {parentMethod} = this.props
+
+      const title = prompt('Введите название нового чата: ', 'Новый чат')
+      title && parentMethod(title)
    }
 
    render() {
       const {chats} = this.props
-         
-      const chatList = chats.list.map((item) => {
-         return (
 
-            <Link key={item.id} to={`/chat/${item.id}`}>
-               <ListItem key={item.id} button selected={this.props.currentChatId == item.id ? true : false}> 
+      const chatList = chats.map((item) => {
+         return (
+            <Link key={item.id} to={`/chat/${item.id}`} className="link">
+               <ListItem key={item.id} button selected={this.props.currentChatId == item.id ? true : false}>
                   <ListItemIcon>
-                     <Badge badgeContent={item.messages.length} color="default">
+                     <Badge badgeContent={item.currentChatMessagesCount} color="primary">
                         <ForumOutlinedIcon />
                      </Badge>
                   </ListItemIcon>
                      <ListItemText primary={item.title} />
-               </ListItem> 
+               </ListItem>
             </Link>
          )
       })
@@ -43,8 +44,7 @@ export class Chats extends React.Component {
                </List>
             </Box>
             <Box className="add-btn">
-               <Fab 
-                  disabled={this.props.addChatDisable}
+               <Fab
                   onClick={this.addChatHandler}
                   variant="round"
                   color="primary"

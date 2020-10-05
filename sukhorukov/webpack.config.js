@@ -12,7 +12,10 @@ module.exports = {
       extensions: ['.js', '.jsx'],
       alias: {
         components: path.join(__dirname, 'src', 'components'),
-        pages: path.join(__dirname, 'src', 'pages')
+        pages: path.join(__dirname, 'src', 'pages'),
+        actions: path.join(__dirname, 'src', 'actions'),
+        reducers: path.join(__dirname, 'src', 'reducers'),
+        containers: path.join(__dirname, 'src', 'containers')
       }
     },
 
@@ -49,7 +52,7 @@ module.exports = {
         }),
 
         new MiniCssExtractPlugin({
-          filename: 'app.css',
+          filename: 'app.css'
         })
     ],
 

@@ -1,22 +1,22 @@
-import {Profile} from 'pages/Profile'
-import {Error} from 'pages/Error'
-import {App} from 'components/app'
+import {ProfileContainer} from 'containers/ProfileContainer'
+import {Error} from 'components/error'
+import {MessengerContainer} from 'containers/MessengerContainer'
 
 export const routes = [
     {
         path: '/',
         exact: true,
-        component: App
+        component: MessengerContainer
     },
     {
-        path: '/profile/:name',
+        path: '/profile',
         exact: true,
-        component: Profile
+        component: ProfileContainer
     },
     {
         path: '/chat/:id([0-9]+)',
         exact: true,
-        component: App
+        component: MessengerContainer
     },
     {
         path: '*',
