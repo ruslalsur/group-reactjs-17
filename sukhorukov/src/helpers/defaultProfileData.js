@@ -1,6 +1,6 @@
 import {nanoid} from 'nanoid'
 
-export const defaultProfile = {
+export const profile = {
    id: nanoid(),
    name: 'Вася'
 }

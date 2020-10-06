@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {nanoid} from 'nanoid'
-import {Fab, Paper, Box, Badge} from '@material-ui/core'
+import {Divider, IconButton, Paper, Box, Badge} from '@material-ui/core'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
@@ -26,11 +26,13 @@ export class Chats extends React.Component {
             <Link key={item.id} to={`/chat/${item.id}`} className="link">
                <ListItem key={item.id} button selected={this.props.currentChatId == item.id ? true : false}>
                   <ListItemIcon>
-                     <Badge badgeContent={item.currentChatMessagesCount} color="primary">
+                     <Badge badgeContent={item.currentChatMessagesCount} color="primary" overlap="circle">
                         <ForumOutlinedIcon />
                      </Badge>
                   </ListItemIcon>
-                     <ListItemText primary={item.title} />
+                     <ListItemText>
+                        {item.title}
+                     </ListItemText>
                </ListItem>
             </Link>
          )
@@ -43,14 +45,14 @@ export class Chats extends React.Component {
                   {chatList}
                </List>
             </Box>
+            <Divider />
             <Box className="add-btn">
-               <Fab
+               <IconButton
                   onClick={this.addChatHandler}
                   variant="round"
-                  color="primary"
-                  size="small">
+                  color="primary">
                      <AddIcon />
-               </Fab>
+               </IconButton>
             </Box>
          </Paper>
       )

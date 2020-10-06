@@ -1,7 +1,7 @@
 import update from 'react-addons-update'
 import {nanoid} from 'nanoid'
 import {CHATS_GET, CHATS_ADD, CHATS_MESSAGE_SEND} from '../actions/chatsActions'
-import {defaultChats} from '../helpers/defaultChatsData'
+import {chats} from '../helpers/defaultChatsData'
 
 const initialState = {
    chats: []
@@ -14,7 +14,7 @@ export const chatsReducer = (state = initialState, action) => {
       case CHATS_GET:
          return {
             ...state,
-            chats: defaultChats
+            chats
          }
 
       // добавление нового чата в redux
@@ -28,7 +28,7 @@ export const chatsReducer = (state = initialState, action) => {
                   title: action.title,
                   messages: [{
                      id: nanoid(),
-                     text: 'Создан новый чат!',
+                     text: `geekMessenger: Создан новый чат: "${action.title}"`,
                      author: "geekMessenger"
                   }]
                }]

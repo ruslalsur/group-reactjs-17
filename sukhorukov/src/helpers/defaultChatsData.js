@@ -1,4 +1,4 @@
-export const defaultChats = [
+export const chats = [
    {
       id: 0,
       title: 'Чат1',
