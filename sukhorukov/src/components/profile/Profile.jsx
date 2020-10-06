@@ -1,7 +1,9 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {Button, IconButton} from '@material-ui/core'
-import EditIcon from '@material-ui/icons/Edit';
+import {Typography, Container, Grid, Button, Paper, Box} from '@material-ui/core'
+import EditIcon from '@material-ui/icons/Edit'
+import {Header} from '../header'
+import './profile.sass'
 
 export class Profile extends React.Component {
    changeNameClickHandler = () => {
@@ -17,31 +19,41 @@ export class Profile extends React.Component {
       const {id, name} = this.props
 
       return (
-         <>
-            <div>
-               <h1>Профиль пользователя</h1>
-               <h2>
-                  Имя автора: {name}
-                  <span>
-                     <IconButton
-                        onClick={this.changeNameClickHandler}
-                        color="primary"
-                        aria-label="edit">
-                           <EditIcon />
-                     </IconButton>
-                  </span>
-               </h2>
-               <h4>Присвоеный идентификатор: {id}</h4>
-            </div>
+         <Container maxWidth="md">
+            <Box mb={3}>
+               <Header author={name} />
+            </Box>
 
-            <hr />
+           
+            <Paper elevation={3}>
+               <Box className="content">
+                  <Grid container alignItems="baseline" spacing={3}>
+                     <Grid item xs={12}>
+                        <Typography variant="h4" color="primary">Профиль автора по имени {name}</Typography>
+                     </Grid>
+                     <Grid item zeroMinWidth xs={3}>
+                     <Typography variant="subtitle1" color="primary">Автор творит под именем: </Typography>
+                     </Grid>
+                     <Grid item zeroMinWidth xs={3}>
+                     <Typography variant="h5" color="textSecondary">{name}</Typography>
+                     </Grid>
+                  </Grid>
 
-            <div>
-               <Link to="/">
-                  <Button variant="contained" color="primary" size="small">назад</Button>
-               </Link>
-            </div>
-         </>
+                  <Grid container alignItems="baseline" spacing={3}>
+                     <Grid item xs={3} />
+                     <Grid item xs={3}>
+                        <Button
+                           onClick={this.changeNameClickHandler}
+                           variant="contained"
+                           color="secondary"
+                           startIcon={<EditIcon />}>
+                              изменить
+                        </Button>   
+                     </Grid>
+                  </Grid>
+               </Box> 
+            </Paper>  
+         </Container>   
       )
    }
 }

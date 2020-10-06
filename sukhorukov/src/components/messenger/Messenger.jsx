@@ -1,11 +1,12 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {nanoid} from 'nanoid'
-import {Typography, Grid, Paper, Box, IconButton} from '@material-ui/core'
+import {Container, Typography, Grid, Paper, Box, IconButton} from '@material-ui/core'
 import PersonIcon from '@material-ui/icons/Person'
 import {Chats} from '../chats'
 import {Messages} from '../messages'
 import {Sender} from '../sender'
+import {Header} from '../header'
 import './messenger.sass'
 
 export class Messenger extends React.Component {
@@ -24,24 +25,10 @@ export class Messenger extends React.Component {
          handleChatAdd
       } = this.props
 
-      const chatTitle = chats[currentChatId] ? chats[currentChatId].title : ''
-
       return (
-         <div className="layout">
-
+         <Container className="container"  maxWidth="md">
             {/* заголовок (header)*/}
-            <Paper className="header"  elevation={3}>
-               <Box className="header-app-name">geekMessenger</Box>
-               <Box className="header-chat-name">
-                  {chatTitle}
-               </Box>
-               <Link className="header-profile" to={`/profile`}>
-                  <IconButton edge="start" color="inherit" aria-label="profile">
-                     <PersonIcon color="action" />
-                  </IconButton>
-                  <Box>{author}</Box>
-               </Link>
-            </Paper>
+            <Header author={author} />
 
             <Grid container alignItems="stretch" spacing={2}>
 
@@ -63,7 +50,7 @@ export class Messenger extends React.Component {
                   <Sender parentMethod={handleMessageSend} />
                </Grid>
             </Grid>
-         </div>
+         </Container>
       )
    }
 }
