@@ -5,66 +5,72 @@ import CheckIcon from '@material-ui/icons/Check'
 import './sender.sass'
 
 export class Sender extends React.Component {
-    state = {
-      author: 'Вася',
+   componentDidMount() {
+      const {author} = this.props
+
+      this.setState({author})
+   }
+
+   state = {
+      author: '',
       text: ''
-    }
+   }
 
-    static propTypes = {
-      parentMethod: Type.func.isRequired
-    };
+   static propTypes = {
+   parentMethod: Type.func.isRequired
+   };
 
-    inputEventHandler = (e) => {
-      const stateKey = e.target.name
-      this.setState({[stateKey]: e.target.value})
-    }
+   inputEventHandler = (e) => {
+   const stateKey = e.target.name
+   this.setState({[stateKey]: e.target.value})
+   }
 
-    messageSendHandler = (e) => {
-      const {parentMethod} = this.props
+   messageSendHandler = (e) => {
+   const {parentMethod} = this.props
 
-      if (e.keyCode===13 && e.ctrlKey || e.type === 'click') {
-         parentMethod(this.state)
-         this.setState({text: ''})
-      }
-    }
+   if (e.keyCode===13 && e.ctrlKey || e.type === 'click') {
+      parentMethod(this.state)
+      this.setState({text: ''})
+   }
+   }
 
-    render() {
-      const {text, author} = this.state
+   render() {
+   const {text, author} = this.state
 
-      return (
-         <>
-            {/*поле для ввода сообщения*/}
-            <Box className="sender">
-               <Box className="sender-text">
-                  <TextField
-                     onChange={this.inputEventHandler}
-                     onKeyDown={this.messageSendHandler}
-                     id="text"
-                     name="text"
-                     value={text}
-                     label={author}
-                     fullWidth
-                     rows={1}
-                     rowsMax={2}
-                     size="small"
-                     multiline
-                     autoFocus />
-               </Box>
-
-               {/*кнопка отправки сообщения*/}
-               {text &&
-               <Box ml={1}>
-                  <IconButton
-                     onClick={this.messageSendHandler}
-                     color="primary"
-                     size="medium"
-                     title="Отправить сообщения"
-                     aria-label="send">
-                        <CheckIcon />
-                  </IconButton>
-               </Box>}
+   return (
+      <>
+         {/*поле для ввода сообщения*/}
+         <Box className="sender">
+            <Box className="sender-text">
+               <TextField
+                  onChange={this.inputEventHandler}
+                  onKeyDown={this.messageSendHandler}
+                  id="text"
+                  name="text"
+                  value={text}
+                  label={author ? author : 'Выберите чат и пишите'}
+                  fullWidth
+                  rows={2}
+                  rowsMax={2}
+                  size="small"
+                  multiline
+                  autoFocus />
             </Box>
-         </>
-      )
-    }
+
+            {/*кнопка отправки сообщения*/}
+            {text &&
+            <Box ml={1}>
+               <IconButton
+                  onClick={this.messageSendHandler}
+                  color="primary"
+                  size="medium"
+                  title="Отправить сообщения"
+                  aria-label="send">
+                     <CheckIcon />
+               </IconButton>
+            </Box>}
+         </Box>
+      </>
+   )
+   }
 }

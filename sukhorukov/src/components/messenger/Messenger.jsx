@@ -26,31 +26,34 @@ export class Messenger extends React.Component {
       } = this.props
 
       return (
-         <Container className="container"  maxWidth="md">
-            {/* заголовок (header)*/}
+         <Container className="container">
             <Header author={author} />
 
-            <Grid container alignItems="stretch" spacing={2}>
-
-               {/* список чатов */}
+            <Grid container spacing={2} alignItems="stretch" className="container">
                <Grid item xs={3}>
-                  <Chats
-                     chats={chats}
-                     currentChatId={currentChatId}
-                     parentMethod={handleChatAdd} />
-               </Grid>
-
-               {/* список сообщений чата*/}
-               <Grid item xs={9}>
-                  <Paper id="scroll" className="messages" elevation={3}>
-                     <Messages messages={messages} />
+                  <Paper className="chats" elevation={3}>
+                     <Chats
+                        chats={chats}
+                        currentChatId={currentChatId}
+                        parentMethod={handleChatAdd} />
                   </Paper>
-
-                  {/* форма отправки сообщений */}
-                  <Sender parentMethod={handleMessageSend} />
+                  </Grid>
+               <Grid item xs={9}>
+                  <Grid container spacing={2} className="messages-container">
+                     <Grid item xs={12}>
+                        <Paper id="scroll" className="messages" elevation={3}>
+                           <Messages messages={messages} />
+                        </Paper>
+                     </Grid>
+                  </Grid>
+                  <Grid container spacing={2} className="message-sender">
+                     <Grid item xs={12}>
+                        <Sender author={author} parentMethod={handleMessageSend} />
+                     </Grid>
+                  </Grid>  
                </Grid>
             </Grid>
-         </Container>
+         </Container>   
       )
    }
 }

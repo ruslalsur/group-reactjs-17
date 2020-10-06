@@ -19,7 +19,7 @@ export class Profile extends React.Component {
       const {id, name} = this.props
 
       return (
-         <Container maxWidth="md">
+         <Container>
             <Box mb={3}>
                <Header author={name} />
             </Box>

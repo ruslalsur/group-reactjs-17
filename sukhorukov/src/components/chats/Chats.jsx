@@ -1,13 +1,13 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {nanoid} from 'nanoid'
-import {Divider, IconButton, Paper, Box, Badge} from '@material-ui/core'
+import {Divider, Grid, IconButton, Paper, Badge} from '@material-ui/core'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import ForumOutlinedIcon from '@material-ui/icons/ForumOutlined'
-import AddIcon from '@material-ui/icons/Add'
+import AddIcon from '@material-ui/icons/Add';
 import './chats.sass'
 
 export class Chats extends React.Component {
@@ -39,22 +39,22 @@ export class Chats extends React.Component {
       })
 
       return (
-         <Paper className="chats-wrapper" elevation={3}>
-            <Box className="chats-list">
-               <List component="nav" aria-label="chats">
+         <Grid container className="chats">
+            <Grid item xs={12} className="chats-list">
+               <List component="nav" aria-label="chats-list">
                   {chatList}
-               </List>
-            </Box>
-            <Divider />
-            <Box className="add-btn">
+               </List>  
+            </Grid>
+            <Grid item xs={12}>
+               <Divider />
                <IconButton
                   onClick={this.addChatHandler}
                   variant="round"
                   color="primary">
                      <AddIcon />
                </IconButton>
-            </Box>
-         </Paper>
+            </Grid>  
+         </Grid>     
       )
    }
 }

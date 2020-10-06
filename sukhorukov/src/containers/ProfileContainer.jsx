@@ -6,7 +6,11 @@ import {profileGetAction, profileChangeAction} from '../actions/profileActions'
 
 class ProfileContainerClass extends React.Component {
    componentDidMount() {
-      this.props.getProfile()
+      const {id} = this.props
+      
+      if (id === undefined) {
+         this.props.getProfile()
+      }
    }
 
    handleProfileChange = (title) => {
@@ -15,7 +19,7 @@ class ProfileContainerClass extends React.Component {
    }
 
    render() {
-      const {id, name, handleProfileChange} = this.props
+      const {id, name} = this.props
 
       return (
          <Profile id={id} name={name} handleProfileChange={this.handleProfileChange}/>

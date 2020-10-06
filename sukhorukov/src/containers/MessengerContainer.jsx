@@ -7,8 +7,15 @@ import {profileGetAction} from '../actions/profileActions'
 
 class MessengerContainerClass extends React.Component {
    componentDidMount() {
-      this.props.getChats()
-      this.props.getProfile()
+      const {author, chats} = this.props
+
+      if (author === undefined) {
+         this.props.getProfile()
+      }
+
+      if (!chats.length) {
+         this.props.getChats()
+      }
    }
 
    handleChatAdd = (title) => {
@@ -16,10 +23,11 @@ class MessengerContainerClass extends React.Component {
    }
 
    handleMessageSend = (message) => {
-      const {messages} = this.props
+      const {messages, author} = this.props
 
       if (messages) {
          message.id = nanoid()
+         message.author = author
          message.currentChatId = this.props.currentChatId
          this.props.sendMessage(message)
       } else alert('Не выбран чат для этого сообщения')
