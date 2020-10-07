@@ -28,19 +28,19 @@ class MessengerContainerClass extends React.Component {
       if (messages) {
          message.id = nanoid()
          message.author = author
-         message.currentChatId = this.props.currentChatId
+         message.chatId = this.props.chatId
          this.props.sendMessage(message)
       } else alert('Не выбран чат для этого сообщения')
    }
 
    render() {
-      const {author, chats, messages, currentChatId} = this.props
+      const {author, chats, messages, chatId} = this.props
 
       return (
          <Messenger
             author={author}
             chats={chats}
-            currentChatId={currentChatId}
+            chatId={chatId}
             messages={messages}
             handleMessageSend={this.handleMessageSend}
             handleChatAdd={this.handleChatAdd} />
@@ -54,7 +54,6 @@ function mapStateToProps(state, ownProps) {
    const {match} = ownProps
 
    let messages = null
-
    if (match && chats[match.params.id]) {
       messages = chats[match.params.id].messages
    }
@@ -65,7 +64,6 @@ function mapStateToProps(state, ownProps) {
          chatsArray.push({
             id: chats[key].id,
             title: chats[key].title,
-            currentChatMessagesCount: chats[key].messages.length
          })
       }
    }
@@ -74,7 +72,7 @@ function mapStateToProps(state, ownProps) {
       author: profile.name,
       chats: chatsArray,
       messages,
-      currentChatId: match
+      chatId: match
          ? match.params.id
          : null
    }

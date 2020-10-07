@@ -1,6 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import {Avatar, Paper, Box} from '@material-ui/core'
+import {APP_NAME} from '../../config/config'
 import './message.sass'
 
 export class Message extends React.Component {
@@ -9,8 +10,8 @@ export class Message extends React.Component {
       const avatarLetters = author.slice(0,1).toUpperCase()
 
       const classes = classNames('msg', {
-         'msg-left': author === 'robot',
-         'msg-right': author !== 'robot',
+         'msg-left': author === APP_NAME,
+         'msg-right': author !== APP_NAME,
       })
 
       return (   

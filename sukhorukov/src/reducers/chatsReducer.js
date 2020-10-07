@@ -2,6 +2,7 @@ import update from 'react-addons-update'
 import {nanoid} from 'nanoid'
 import {CHATS_GET, CHATS_ADD, CHATS_MESSAGE_SEND} from '../actions/chatsActions'
 import {chats} from '../helpers/defaultChatsData'
+import {APP_NAME} from '../config/config.js'
 
 const initialState = {
    chats: []
@@ -28,8 +29,8 @@ export const chatsReducer = (state = initialState, action) => {
                   title: action.title,
                   messages: [{
                      id: nanoid(),
-                     text: `geekMessenger: Создан новый чат: "${action.title}"`,
-                     author: "geekMessenger"
+                     text: `${APP_NAME}: Создан новый чат: "${action.title}"`,
+                     author: APP_NAME
                   }]
                }]
             }
@@ -39,7 +40,7 @@ export const chatsReducer = (state = initialState, action) => {
       case CHATS_MESSAGE_SEND:
          return update(state, {
             chats: {
-               [action.message.currentChatId]: {
+               [action.message.chatId]: {
                   messages: {
                      $push: [{
                         id: action.message.id,

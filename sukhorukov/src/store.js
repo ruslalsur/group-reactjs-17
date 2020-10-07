@@ -1,5 +1,16 @@
-import {createStore} from 'redux'
+import {createStore, applyMiddleware} from 'redux'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import {rootReducer} from 'reducers'
+import {appAnswerMiddleware} from './middlewares/appAnswerMiddleware'
 
-export const store = createStore(rootReducer, composeWithDevTools())
+const myComposeWithDevTools = composeWithDevTools({trace: false})
+
+export const store = createStore(
+   rootReducer,
+   myComposeWithDevTools(
+      applyMiddleware(
+         appAnswerMiddleware,
+         
+      )
+   )
+)

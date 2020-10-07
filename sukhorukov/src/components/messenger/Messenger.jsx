@@ -17,14 +17,14 @@ export class Messenger extends React.Component {
 
    render() {
       const {
-         currentChatId,
          author,
+         chatId,
          chats,
          messages,
          handleMessageSend,
          handleChatAdd
       } = this.props
-
+      
       return (
          <Container className="container">
             <Header author={author} />
@@ -33,8 +33,8 @@ export class Messenger extends React.Component {
                <Grid item xs={3}>
                   <Paper className="chats" elevation={3}>
                      <Chats
+                        chatId={chatId}
                         chats={chats}
-                        currentChatId={currentChatId}
                         parentMethod={handleChatAdd} />
                   </Paper>
                   </Grid>
