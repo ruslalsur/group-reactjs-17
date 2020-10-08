@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {nanoid} from 'nanoid'
+import {push} from 'connected-react-router'
 import {Messenger} from '../components/messenger'
 import {chatsGetAction, chatsAddAction, chatsMessageSendAction} from '../actions/chatsActions'
 import {profileGetAction} from '../actions/profileActions'
@@ -19,7 +20,11 @@ class MessengerContainerClass extends React.Component {
    }
 
    handleChatAdd = (title) => {
-      this.props.addChat(title)
+      const {chats, addChat, redirect} = this.props
+      const lastId = chats.length
+
+      addChat(lastId, title)
+      redirect(lastId)
    }
 
    handleMessageSend = (message) => {
@@ -82,8 +87,9 @@ function mapDispatchToProps(dispatch) {
    return {
       getProfile: () => dispatch(profileGetAction()),
       getChats: () => dispatch(chatsGetAction()),
-      addChat: (title) => dispatch(chatsAddAction(title)),
-      sendMessage: (message) => dispatch(chatsMessageSendAction(message))
+      addChat: (id, title) => dispatch(chatsAddAction(id, title)),
+      sendMessage: (message) => dispatch(chatsMessageSendAction(message)),
+      redirect: (chatId) => dispatch(push(`/chat/${chatId}`))
    }
 }
 

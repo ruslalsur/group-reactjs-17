@@ -6,8 +6,9 @@ export const chatsGetAction = () => ({
     type: CHATS_GET
 })
 
-export const chatsAddAction = (title) => ({
+export const chatsAddAction = (id, title) => ({
     type: CHATS_ADD,
+    id,
     title
 })
 

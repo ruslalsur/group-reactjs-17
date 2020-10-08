@@ -11,21 +11,19 @@ const initialState = {
 export const chatsReducer = (state = initialState, action) => {
    switch (action.type) {
 
-      // запрос списка чатов из redux
+      // запрос списка чатов
       case CHATS_GET:
          return {
             ...state,
             chats
          }
 
-      // добавление нового чата в redux
+      // добавление нового чата
       case CHATS_ADD:
-         const id = state.chats.length
-
          return update(state, {
             chats: {
                $push: [{
-                  id,
+                  id: action.id,
                   title: action.title,
                   messages: [{
                      id: nanoid(),
@@ -36,7 +34,7 @@ export const chatsReducer = (state = initialState, action) => {
             }
          })
 
-      // добавление нового сообщения в чат в redux
+      // добавление нового сообщения в чат
       case CHATS_MESSAGE_SEND:
          return update(state, {
             chats: {
