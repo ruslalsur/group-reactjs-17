@@ -39,7 +39,7 @@ class MessengerContainerClass extends React.Component {
    }
 
    render() {
-      const {author, chats, messages, chatId} = this.props
+      const {author, chats, messages, chatId, redirect} = this.props
 
       return (
          <Messenger
@@ -48,7 +48,8 @@ class MessengerContainerClass extends React.Component {
             chatId={chatId}
             messages={messages}
             handleMessageSend={this.handleMessageSend}
-            handleChatAdd={this.handleChatAdd} />
+            handleChatAdd={this.handleChatAdd}
+            redirect={redirect}/>
       )
    }
 }

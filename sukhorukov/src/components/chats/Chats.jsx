@@ -6,10 +6,16 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import ForumOutlinedIcon from '@material-ui/icons/ForumOutlined'
-import AddIcon from '@material-ui/icons/Add';
+import AddIcon from '@material-ui/icons/Add'
+import {push} from 'connected-react-router'
 import './chats.sass'
 
 export class Chats extends React.Component {
+   choiseChatHandler = (id) => {
+      const {redirect} = this.props
+      redirect(id)
+   }
+
    addChatHandler = () => {
       const {parentMethod} = this.props
 
@@ -22,16 +28,16 @@ export class Chats extends React.Component {
 
       const chatList = chats.map((item) => {
          return (
-            <Link key={item.id} to={`/chat/${item.id}`} className="link">
+            <div onClick={() => this.choiseChatHandler(item.id)} key={item.id} className="link">
                <ListItem key={item.id} button selected={chatId == item.id ? true : false}>
                   <ListItemIcon>
                      <ForumOutlinedIcon />
                   </ListItemIcon>
-                     <ListItemText>
-                        {item.title}
-                     </ListItemText>
+                  <ListItemText>
+                     {item.title}
+                  </ListItemText>
                </ListItem>
-            </Link>
+            </div>
          )
       })
 
@@ -40,7 +46,7 @@ export class Chats extends React.Component {
             <Grid item xs={12} className="chats-list">
                <List component="nav" aria-label="chats-list">
                   {chatList}
-               </List>  
+               </List>
             </Grid>
             <Grid item xs={12}>
                <IconButton
@@ -49,8 +55,8 @@ export class Chats extends React.Component {
                   color="primary">
                      <AddIcon />
                </IconButton>
-            </Grid>  
-         </Grid>     
+            </Grid>
+         </Grid>
       )
    }
 }
