@@ -6,6 +6,7 @@ import storage from 'redux-persist/lib/storage'
 import {persistStore, persistReducer} from 'redux-persist'
 import {createRootReducer} from 'reducers'
 import {appAnswerMiddleware} from './middlewares/appAnswerMiddleware'
+import {chatsBadgingMiddleware} from './middlewares/chatsBadgingMiddleware'
 
 const customComposeWithDevTools = composeWithDevTools({trace: false})
 
@@ -26,7 +27,8 @@ export const initStore = () => {
       customComposeWithDevTools(
          applyMiddleware(
             appAnswerMiddleware,
-            routerMiddleware(history)
+            routerMiddleware(history),
+            chatsBadgingMiddleware
          )
       )
    )

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {Grid, IconButton, Paper} from '@material-ui/core'
+import {Badge, Grid, IconButton, Paper} from '@material-ui/core'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
@@ -12,7 +12,9 @@ import './chats.sass'
 
 export class Chats extends React.Component {
    choiseChatHandler = (id) => {
-      const {redirect} = this.props
+      const {redirect, setChatAsReaded} = this.props
+
+      setChatAsReaded(id)
       redirect(id)
    }
 
@@ -25,6 +27,7 @@ export class Chats extends React.Component {
 
    render() {
       const {chatId, chats} = this.props
+      console.log(this.props);
 
       const chatList = chats.map((item) => {
          return (
@@ -33,9 +36,11 @@ export class Chats extends React.Component {
                   <ListItemIcon>
                      <ForumOutlinedIcon />
                   </ListItemIcon>
-                  <ListItemText>
-                     {item.title}
-                  </ListItemText>
+                   <Badge color="error" badgeContent="new " invisible={chatId == item.id ? true : item.readed}>
+                     <ListItemText>
+                        {item.title}
+                     </ListItemText>
+                  </Badge>
                </ListItem>
             </div>
          )

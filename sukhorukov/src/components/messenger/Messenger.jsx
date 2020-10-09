@@ -23,7 +23,8 @@ export class Messenger extends React.Component {
          messages,
          handleMessageSend,
          handleChatAdd,
-         redirect
+         redirect,
+         setChatAsReaded
       } = this.props
 
       return (
@@ -37,7 +38,8 @@ export class Messenger extends React.Component {
                         chatId={chatId}
                         chats={chats}
                         parentMethod={handleChatAdd}
-                        redirect={redirect}/>
+                        redirect={redirect}
+                        setChatAsReaded={setChatAsReaded} />
                   </Paper>
                   </Grid>
                <Grid item xs={9}>

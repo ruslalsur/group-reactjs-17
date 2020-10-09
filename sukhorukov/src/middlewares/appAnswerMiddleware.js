@@ -7,17 +7,15 @@ export const appAnswerMiddleware = store => next => action => {
       const {chatId, author} = action.message
 
       if (author !== APP_NAME) {
-         setTimeout(() => {
-            if (author !== APP_NAME) {
-               store.dispatch(chatsMessageSendAction(
-                  {
-                     id: nanoid(),
-                     chatId,
-                     text: `Спасибо тебе, ${author}, за информацию`,
-                     author: APP_NAME
-                  }
-               ))
-            }
+         const timer = setTimeout(() => {
+            store.dispatch(chatsMessageSendAction(
+               {
+                  id: nanoid(),
+                  chatId,
+                  text: `Спасибо тебе, ${author}, за информацию`,
+                  author: APP_NAME
+               }
+            ))
          }, 4000)
       }
     }

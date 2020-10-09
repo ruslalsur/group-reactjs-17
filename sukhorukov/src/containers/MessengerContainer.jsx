@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {nanoid} from 'nanoid'
 import {push} from 'connected-react-router'
 import {Messenger} from '../components/messenger'
-import {chatsGetAction, chatsAddAction, chatsMessageSendAction} from '../actions/chatsActions'
+import {chatsGetAction, chatsAddAction, setChatAsReaded, chatsMessageSendAction} from '../actions/chatsActions'
 import {profileGetAction} from '../actions/profileActions'
 
 class MessengerContainerClass extends React.Component {
@@ -39,7 +39,7 @@ class MessengerContainerClass extends React.Component {
    }
 
    render() {
-      const {author, chats, messages, chatId, redirect} = this.props
+      const {author, chats, messages, chatId, redirect, setChatAsReaded} = this.props
 
       return (
          <Messenger
@@ -49,7 +49,8 @@ class MessengerContainerClass extends React.Component {
             messages={messages}
             handleMessageSend={this.handleMessageSend}
             handleChatAdd={this.handleChatAdd}
-            redirect={redirect}/>
+            redirect={redirect}
+            setChatAsReaded={setChatAsReaded} />
       )
    }
 }
@@ -70,6 +71,7 @@ function mapStateToProps(state, ownProps) {
          chatsArray.push({
             id: chats[key].id,
             title: chats[key].title,
+            readed: chats[key].readed,
          })
       }
    }
@@ -89,6 +91,7 @@ function mapDispatchToProps(dispatch) {
       getProfile: () => dispatch(profileGetAction()),
       getChats: () => dispatch(chatsGetAction()),
       addChat: (id, title) => dispatch(chatsAddAction(id, title)),
+      setChatAsReaded: (id) => dispatch(setChatAsReaded(id)),
       sendMessage: (message) => dispatch(chatsMessageSendAction(message)),
       redirect: (chatId) => dispatch(push(`/chat/${chatId}`))
    }
