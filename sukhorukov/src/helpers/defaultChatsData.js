@@ -2,7 +2,7 @@ export const chats = [
    {
       id: 0,
       title: 'Чат1',
-      readed: false,
+      readed: true,
       messages: [
          {
             id: 0,
@@ -14,7 +14,7 @@ export const chats = [
    {
       id: 1,
       title: 'Чат2',
-      readed: false,
+      readed: true,
       messages: [
          {
             id: 0,
@@ -26,7 +26,7 @@ export const chats = [
    {
       id: 2,
       title: 'Чат3',
-      readed: false,
+      readed: true,
       messages: [
          {
             id: 0,
