@@ -26,22 +26,18 @@ export const chatsReducer = (state = initialState, action) => {
                   id: action.id,
                   title: action.title,
                   readed: false,
-                  messages: [{
-                     id: nanoid(),
-                     text: `${APP_NAME}: Создан новый чат: "${action.title}"`,
-                     author: APP_NAME
-                  }]
+                  messages: []
                }]
             }
          })
 
       // удаление чата
       case CHATS_DEL:
-         return update(state, {
-            chats: {
-               $splice: [[action.id, 1]]
-            }
-         })
+         let chats = state.chats
+         chats.splice(action.id, 1)
+         chats.filter((chat, index) => chat.id = index)
+
+         return {chats}
 
       // переключение бейджика непрочитанности сообщений
       case SET_CHAT_AS_READED:

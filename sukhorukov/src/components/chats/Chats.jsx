@@ -24,7 +24,7 @@ export class Chats extends React.Component {
 
       if (chats.length > 1) {
          delChat(id)
-         // redirect(0)
+         redirect(0)
       }
    }
 
