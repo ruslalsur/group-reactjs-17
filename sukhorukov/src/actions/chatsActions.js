@@ -8,10 +8,11 @@ export const chatsGetAction = () => ({
     type: CHATS_GET
 })
 
-export const chatsAddAction = (id, title) => ({
+export const chatsAddAction = (id, title, readed) => ({
     type: CHATS_ADD,
     id,
-    title
+    title,
+    readed
 })
 
 export const chatsDelAction = (id) => ({

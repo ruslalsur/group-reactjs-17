@@ -21,10 +21,10 @@ class MessengerContainerClass extends React.Component {
 
    handleChatAdd = (title) => {
       const {chats, addChat, redirect} = this.props
-      const lastId = chats.length
+      const id = chats[chats.length - 1].id + 1
 
-      addChat(lastId, title)
-      redirect(lastId)
+      addChat(id, title)
+      redirect(id)
    }
 
    handleMessageSend = (message) => {

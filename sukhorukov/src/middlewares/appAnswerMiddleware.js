@@ -6,8 +6,12 @@ export const appAnswerMiddleware = store => next => action => {
     if (action.type === CHATS_MESSAGE_SEND) {
       const {chatId, author} = action.message
 
+      const messagesLengthSync = store.getState().chatsReducer.chats[chatId].messages.length
       if (author !== APP_NAME) {
-         const timer = setTimeout(() => {
+         setTimeout(() => {
+            const messagesLengthAsync = store.getState().chatsReducer.chats[chatId].messages.length - 1
+            if (messagesLengthSync !== messagesLengthAsync)  return false
+
             store.dispatch(chatsMessageSendAction(
                {
                   id: nanoid(),
