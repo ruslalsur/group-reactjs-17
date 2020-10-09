@@ -33,11 +33,11 @@ export const chatsReducer = (state = initialState, action) => {
 
       // удаление чата
       case CHATS_DEL:
-         let chats = state.chats
-         chats.splice(action.id, 1)
-         chats.filter((chat, index) => chat.id = index)
+         let chatsData = state.chats
+         chatsData.splice(action.id, 1)
+         chatsData.filter((chat, index) => chat.id = index)
 
-         return {chats}
+         return {chatsData}
 
       // переключение бейджика непрочитанности сообщений
       case SET_CHAT_AS_READED:
