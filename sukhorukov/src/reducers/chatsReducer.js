@@ -1,9 +1,6 @@
 import update from 'react-addons-update'
 import {nanoid} from 'nanoid'
-import {
-   CHATS_GET, CHATS_ADD,
-   SET_CHAT_AS_READED,
-   CHATS_MESSAGE_SEND} from '../actions/chatsActions'
+import {CHATS_GET, CHATS_ADD, CHATS_DEL, SET_CHAT_AS_READED, CHATS_MESSAGE_SEND} from '../actions/chatsActions'
 import {chats} from '../helpers/defaultChatsData'
 import {APP_NAME} from '../config/config.js'
 
@@ -38,10 +35,16 @@ export const chatsReducer = (state = initialState, action) => {
             }
          })
 
+      // удаление чата
+      case CHATS_DEL:
+         return update(state, {
+            chats: {
+               $splice: [[action.id, 1]]
+            }
+         })
+
       // переключение бейджика непрочитанности сообщений
       case SET_CHAT_AS_READED:
-         // const {readed} = state.chats[action.id]
-
          return update(state, {
             chats: {
                [action.id]: {
@@ -53,7 +56,7 @@ export const chatsReducer = (state = initialState, action) => {
       // добавление нового сообщения в чат
       case CHATS_MESSAGE_SEND:
          const status = action.message.author === APP_NAME ? false : true
-         
+
          return update(state, {
             chats: {
                [action.message.chatId]: {

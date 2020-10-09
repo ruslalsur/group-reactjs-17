@@ -24,6 +24,7 @@ export class Messenger extends React.Component {
          handleMessageSend,
          handleChatAdd,
          redirect,
+         delChat,
          setChatAsReaded
       } = this.props
 
@@ -39,6 +40,7 @@ export class Messenger extends React.Component {
                         chats={chats}
                         parentMethod={handleChatAdd}
                         redirect={redirect}
+                        delChat={delChat}
                         setChatAsReaded={setChatAsReaded} />
                   </Paper>
                   </Grid>
