@@ -25,7 +25,7 @@ export const chatsReducer = (state = initialState, action) => {
                $push: [{
                   id: action.id,
                   title: action.title,
-                  readed: false,
+                  readed: true,
                   messages: []
                }]
             }
