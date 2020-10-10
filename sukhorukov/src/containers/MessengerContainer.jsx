@@ -8,7 +8,7 @@ import {profileGetAction} from '../actions/profileActions'
 
 class MessengerContainerClass extends React.Component {
    componentDidMount() {
-      const {author, chats} = this.props
+      const {author, chats, redirect} = this.props
 
       if (author === undefined) {
          this.props.getProfile()
@@ -17,41 +17,29 @@ class MessengerContainerClass extends React.Component {
       if (!chats.length) {
          this.props.getChats()
       }
+
+      redirect(0)
    }
 
-   handleChatAdd = (title) => {
-      const {chats, addChat, redirect} = this.props
-      const id = chats[chats.length - 1].id + 1
-
-      addChat(id, title)
-      redirect(id)
-   }
-
-   handleMessageSend = (message) => {
-      const {messages, author} = this.props
+   sendMessage = (message) => {
+      const {messages, author, sendMessageToStore} = this.props
 
       if (messages) {
          message.id = nanoid()
          message.author = author
          message.chatId = this.props.chatId
-         this.props.sendMessage(message)
+         sendMessageToStore(message)
       } else alert('Не выбран чат для этого сообщения')
    }
 
    render() {
-      const {author, chats, messages, chatId, redirect, setChatAsReaded, delChat} = this.props
+      const {author, messages} = this.props
 
       return (
          <Messenger
             author={author}
-            chats={chats}
-            chatId={chatId}
             messages={messages}
-            handleMessageSend={this.handleMessageSend}
-            handleChatAdd={this.handleChatAdd}
-            redirect={redirect}
-            delChat={delChat}
-            setChatAsReaded={setChatAsReaded} />
+            sendMessage={this.sendMessage} />
       )
    }
 }
@@ -66,20 +54,9 @@ function mapStateToProps(state, ownProps) {
       messages = chats[match.params.id].messages
    }
 
-   const chatsArray = []
-   for (let key in chats) {
-      if (chats.hasOwnProperty(key)) {
-         chatsArray.push({
-            id: chats[key].id,
-            title: chats[key].title,
-            readed: chats[key].readed,
-         })
-      }
-   }
-
    return {
       author: profile.name,
-      chats: chatsArray,
+      chats,
       messages,
       chatId: match
          ? match.params.id
@@ -91,10 +68,7 @@ function mapDispatchToProps(dispatch) {
    return {
       getProfile: () => dispatch(profileGetAction()),
       getChats: () => dispatch(chatsGetAction()),
-      addChat: (id, title) => dispatch(chatsAddAction(id, title)),
-      delChat: (id) => dispatch(chatsDelAction(id)),
-      setChatAsReaded: (id) => dispatch(setChatAsReaded(id)),
-      sendMessage: (message) => dispatch(chatsMessageSendAction(message)),
+      sendMessageToStore: (message) => dispatch(chatsMessageSendAction(message)),
       redirect: (chatId) => dispatch(push(`/chat/${chatId}`))
    }
 }

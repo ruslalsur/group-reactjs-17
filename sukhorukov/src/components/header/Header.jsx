@@ -7,7 +7,7 @@ import './header.sass'
 
 export class Header extends React.Component {
    render() {
-      const {author} = this.props
+      const {name} = this.props
 
       return (
          <>
@@ -16,12 +16,12 @@ export class Header extends React.Component {
                <Link className="header-app-name" to={'/'}>
                   geekMessenger
                </Link>
-               
+
                <Link className="header-profile" to={'/profile'}>
                   <IconButton edge="start" color="inherit" aria-label="profile">
                      <PersonIcon color="action" />
                   </IconButton>
-                  <Box>{author}</Box>
+                  <Box>{name}</Box>
                </Link>
             </Paper>
          </>

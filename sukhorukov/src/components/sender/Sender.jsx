@@ -7,7 +7,6 @@ import './sender.sass'
 export class Sender extends React.Component {
    componentDidMount() {
       const {author} = this.props
-
       this.setState({author})
    }
 
@@ -17,60 +16,60 @@ export class Sender extends React.Component {
    }
 
    static propTypes = {
-   parentMethod: Type.func.isRequired
+      sendMessage: Type.func.isRequired
    };
 
    inputEventHandler = (e) => {
-   const stateKey = e.target.name
-   this.setState({[stateKey]: e.target.value})
+      const stateKey = e.target.name
+      this.setState({[stateKey]: e.target.value})
    }
 
    messageSendHandler = (e) => {
-   const {parentMethod} = this.props
+      const {sendMessage} = this.props
 
-   if (e.keyCode===13 && e.ctrlKey || e.type === 'click') {
-      parentMethod(this.state)
-      this.setState({text: ''})
-   }
+      if (e.keyCode===13 && e.ctrlKey || e.type === 'click') {
+         sendMessage(this.state)
+         this.setState({text: ''})
+      }
    }
 
    render() {
-   const {text, author} = this.state
+      const {text, author} = this.state
 
-   return (
-      <>
-         {/*поле для ввода сообщения*/}
-         <Box className="sender">
-            <Box className="sender-text">
-               <TextField
-                  onChange={this.inputEventHandler}
-                  onKeyDown={this.messageSendHandler}
-                  id="text"
-                  name="text"
-                  value={text}
-                  label={author ? author : 'Выберите чат и пишите'}
-                  fullWidth
-                  rows={2}
-                  rowsMax={2}
-                  size="small"
-                  multiline
-                  autoFocus />
+      return (
+         <>
+            {/*поле для ввода сообщения*/}
+            <Box className="sender">
+               <Box className="sender-text">
+                  <TextField
+                     onChange={this.inputEventHandler}
+                     onKeyDown={this.messageSendHandler}
+                     id="text"
+                     name="text"
+                     value={text}
+                     label={author ? author : 'Выберите чат и пишите'}
+                     fullWidth
+                     rows={2}
+                     rowsMax={2}
+                     size="small"
+                     multiline
+                     autoFocus />
+               </Box>
+
+               {/*кнопка отправки сообщения*/}
+               {text &&
+               <Box ml={1}>
+                  <IconButton
+                     onClick={this.messageSendHandler}
+                     color="primary"
+                     size="medium"
+                     title="Отправить сообщения"
+                     aria-label="send">
+                        <CheckIcon />
+                  </IconButton>
+               </Box>}
             </Box>
-
-            {/*кнопка отправки сообщения*/}
-            {text &&
-            <Box ml={1}>
-               <IconButton
-                  onClick={this.messageSendHandler}
-                  color="primary"
-                  size="medium"
-                  title="Отправить сообщения"
-                  aria-label="send">
-                     <CheckIcon />
-               </IconButton>
-            </Box>}
-         </Box>
-      </>
-   )
+         </>
+      )
    }
 }

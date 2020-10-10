@@ -26,8 +26,8 @@ export const initStore = () => {
       initialStore,
       customComposeWithDevTools(
          applyMiddleware(
-            appAnswerMiddleware,
             routerMiddleware(history),
+            appAnswerMiddleware,
             chatsBadgingMiddleware
          )
       )

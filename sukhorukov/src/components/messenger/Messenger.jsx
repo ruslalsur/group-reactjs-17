@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import {nanoid} from 'nanoid'
 import {Container, Typography, Grid, Paper, Box, IconButton} from '@material-ui/core'
 import PersonIcon from '@material-ui/icons/Person'
-import {Chats} from '../chats'
+import {ChatsContainer} from '../../containers/ChatsContainer'
 import {Messages} from '../messages'
 import {Sender} from '../sender'
 import {Header} from '../header'
@@ -21,45 +21,31 @@ export class Messenger extends React.Component {
          chatId,
          chats,
          messages,
-         handleMessageSend,
-         handleChatAdd,
-         redirect,
-         delChat,
-         setChatAsReaded
+         sendMessage
       } = this.props
 
       return (
-         <Container className="container">
-            <Header author={author} />
-
-            <Grid container spacing={2} alignItems="stretch" className="container">
-               <Grid item xs={3}>
-                  <Paper className="chats" elevation={3}>
-                     <Chats
-                        chatId={chatId}
-                        chats={chats}
-                        parentMethod={handleChatAdd}
-                        redirect={redirect}
-                        delChat={delChat}
-                        setChatAsReaded={setChatAsReaded} />
-                  </Paper>
+         <Grid container spacing={2} alignItems="stretch" className="container">
+            <Grid item xs={3}>
+               <Paper className="chats" elevation={3}>
+                  <ChatsContainer />
+               </Paper>
+               </Grid>
+            <Grid item xs={9}>
+               <Grid container spacing={2} className="messages-container">
+                  <Grid item xs={12}>
+                     <Paper id="scroll" className="messages" elevation={3}>
+                        <Messages messages={messages} />
+                     </Paper>
                   </Grid>
-               <Grid item xs={9}>
-                  <Grid container spacing={2} className="messages-container">
-                     <Grid item xs={12}>
-                        <Paper id="scroll" className="messages" elevation={3}>
-                           <Messages messages={messages} />
-                        </Paper>
-                     </Grid>
-                  </Grid>
-                  <Grid container spacing={2} className="message-sender">
-                     <Grid item xs={12}>
-                        <Sender author={author} parentMethod={handleMessageSend} />
-                     </Grid>
+               </Grid>
+               <Grid container spacing={2} className="message-sender">
+                  <Grid item xs={12}>
+                     <Sender author={author} sendMessage={sendMessage} />
                   </Grid>
                </Grid>
             </Grid>
-         </Container>
+         </Grid>
       )
    }
 }

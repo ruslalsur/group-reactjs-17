@@ -1,25 +1,22 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {push} from 'connected-react-router'
 import {Badge, Grid, IconButton, Paper} from '@material-ui/core'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
-import ForumOutlinedIcon from '@material-ui/icons/ForumOutlined'
+import ChatIcon from '@material-ui/icons/Chat'
 import AddIcon from '@material-ui/icons/Add'
-import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import {push} from 'connected-react-router'
+import ClearIcon from '@material-ui/icons/Clear'
 import './chats.sass'
 
 export class Chats extends React.Component {
    choiseChatHandler = (id) => {
-      const {redirect, setChatAsReaded} = this.props
-
-      setChatAsReaded(id)
+      const {redirect} = this.props
       redirect(id)
    }
 
-   deleteChatHandler = (id) => {
+   delChatHandler = (id) => {
       const {chats, redirect, delChat} = this.props
 
       if (chats.length > 1) {
@@ -29,10 +26,10 @@ export class Chats extends React.Component {
    }
 
    addChatHandler = () => {
-      const {parentMethod} = this.props
+      const {addChat} = this.props
 
       const title = prompt('Введите название нового чата: ', 'Новый чат')
-      title && parentMethod(title)
+      title && addChat(title)
    }
 
    render() {
@@ -42,19 +39,19 @@ export class Chats extends React.Component {
          return (
             <div className="listItem" key={item.id}>
                <div onClick={() => this.choiseChatHandler(item.id)} className="link">
-                  <ListItem key={item.id} button selected={chatId == item.id ? true : false}>
+                  <ListItem button selected={chatId == item.id ? true : false}>
                      <ListItemIcon>
-                        <ForumOutlinedIcon />
+                        <Badge color="error" badgeContent="1" invisible={item.readed}>
+                           <ChatIcon />
+                        </Badge>
                      </ListItemIcon>
-                      <Badge color="error" badgeContent="new " invisible={chatId == item.id ? true : item.readed}>
                         <ListItemText>
                            {item.title}
                         </ListItemText>
-                     </Badge>
                   </ListItem>
                </div>
-               <IconButton onClick={() => this.deleteChatHandler(item.id)}>
-                  <HighlightOffIcon />
+               <IconButton onClick={() => this.delChatHandler(item.id)}>
+                  <ClearIcon />
                </IconButton>
             </div>
          )

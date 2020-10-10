@@ -1,7 +1,7 @@
 import update from 'react-addons-update'
 import {nanoid} from 'nanoid'
-import {CHATS_GET, CHATS_ADD, CHATS_DEL, SET_CHAT_AS_READED, CHATS_MESSAGE_SEND} from '../actions/chatsActions'
-import {chats} from '../helpers/defaultChatsData'
+import {CHATS_GET, CHATS_ADD, CHATS_DEL, SET_CHAT_READED_STATE, CHATS_MESSAGE_SEND} from '../actions/chatsActions'
+import {defaultChatsData} from '../helpers/defaultChatsData'
 import {APP_NAME} from '../config/config.js'
 
 const initialState = {
@@ -15,7 +15,7 @@ export const chatsReducer = (state = initialState, action) => {
       case CHATS_GET:
          return {
             ...state,
-            chats
+            chats: defaultChatsData
          }
 
       // добавление нового чата
@@ -33,39 +33,37 @@ export const chatsReducer = (state = initialState, action) => {
 
       // удаление чата
       case CHATS_DEL:
-         let chatsData = state.chats
-         chatsData.splice(action.id, 1)
-         chatsData.filter((chat, index) => chat.id = index)
+         const {chats} = state
 
-         return {chatsData}
+         chats.splice(action.id, 1)
+         chats.filter((chat, index) => chat.id = index)
+
+         return {chats}
 
       // переключение бейджика непрочитанности сообщений
-      case SET_CHAT_AS_READED:
+      case SET_CHAT_READED_STATE:
          return update(state, {
             chats: {
-               [action.id]: {
-                  readed: {$set: true}
+               [action.chatId]: {
+                  readed: {$set: action.readed}
                }
             }
          })
 
       // добавление нового сообщения в чат
       case CHATS_MESSAGE_SEND:
-         const status = action.message.author === APP_NAME ? false : true
-
          return update(state, {
             chats: {
                [action.message.chatId]: {
-                  readed: {$set: status},
                   messages: {
                      $push: [{
                         id: action.message.id,
                         text: action.message.text,
                         author: action.message.author
                      }]
-                  },
-               },
-            },
+                  }
+               }
+            }
          })
 
       default:
