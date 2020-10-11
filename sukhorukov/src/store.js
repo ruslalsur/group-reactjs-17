@@ -6,6 +6,7 @@ import storage from 'redux-persist/lib/storage'
 import {persistStore, persistReducer} from 'redux-persist'
 import {createRootReducer} from 'reducers'
 import {apiMiddleware} from 'redux-api-middleware'
+import reduxThunk from 'redux-thunk'
 import {appAnswerMiddleware} from './middlewares/appAnswerMiddleware'
 import {chatsBadgingMiddleware} from './middlewares/chatsBadgingMiddleware'
 
@@ -14,7 +15,7 @@ const customComposeWithDevTools = composeWithDevTools({trace: false})
 const persistConfig = {
     key: 'app',
     storage,
-    blacklist: ['chatsReducer']
+    blacklist: ['chatsReducer', 'profilesReducer']
 }
 
 export const history = createBrowserHistory()
@@ -30,7 +31,8 @@ export const initStore = () => {
             routerMiddleware(history),
             appAnswerMiddleware,
             chatsBadgingMiddleware,
-            apiMiddleware
+            apiMiddleware,
+            reduxThunk
          )
       )
    )

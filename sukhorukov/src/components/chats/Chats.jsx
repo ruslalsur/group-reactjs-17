@@ -48,11 +48,11 @@ export class Chats extends React.Component {
                         <ListItemText>
                            {item.title}
                         </ListItemText>
+                        <IconButton onClick={() => this.delChatHandler(item.id)} color="secondary">
+                           <ClearIcon fontSize="small"/>
+                        </IconButton>
                   </ListItem>
                </div>
-               <IconButton onClick={() => this.delChatHandler(item.id)}>
-                  <ClearIcon />
-               </IconButton>
             </div>
          )
       })

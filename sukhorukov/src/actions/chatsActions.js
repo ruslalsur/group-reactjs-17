@@ -8,6 +8,7 @@ export const CHATS_DEL = 'CHATS_DEL'
 export const CHATS_MESSAGE_SEND = 'CHATS_MESSAGE_SEND'
 export const SET_CHAT_READED_STATE = 'SET_CHAT_READED_STATE'
 
+// получение данных с json-сервера с использованием redux-api-middleware
 export const chatsLoadAction = () => createAction({
     endpoint: 'http://localhost:3000/chats?_embed=messages',
     method: 'GET',
@@ -20,6 +21,7 @@ export const chatsLoadAction = () => createAction({
     ]
 })
 
+// получение данных с json-сервера с использованием redux-thunk
 // export const chatsLoadRequestAction = () => ({
 //     type: CHATS_LOAD_REQUEST,
 // })
@@ -46,6 +48,7 @@ export const chatsLoadAction = () => createAction({
 //     }
 // }
 
+// добавление нового чата
 export const chatsAddAction = (id, title, readed) => ({
     type: CHATS_ADD,
     id,
@@ -53,16 +56,19 @@ export const chatsAddAction = (id, title, readed) => ({
     readed
 })
 
+// удаление старого чата
 export const chatsDelAction = (id) => ({
     type: CHATS_DEL,
     id
 })
 
+// отправка сообщения
 export const chatsMessageSendAction = (message) => ({
     type: CHATS_MESSAGE_SEND,
     message
 })
 
+// установка статуса прочитанности чата
 export const setChatReadedState = (chatId, readed) => ({
     type:  SET_CHAT_READED_STATE,
     chatId,

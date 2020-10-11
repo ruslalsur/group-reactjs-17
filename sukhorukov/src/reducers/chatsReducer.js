@@ -28,18 +28,19 @@ export const chatsReducer = (state = initialState, action) => {
                 error: false,
             }
 
-        case CHATS_LOAD_SUCCESS:
+      case CHATS_LOAD_SUCCESS:
         return {
             ...state,
             loading: false,
             chats: action.payload
         }
-        case CHATS_LOAD_FAILURE:
-            return {
-                ...state,
-                loading: false,
-                error: true
-            }
+
+      case CHATS_LOAD_FAILURE:
+         return {
+             ...state,
+             loading: false,
+             error: true
+         }
 
       // добавление нового чата
       case CHATS_ADD:

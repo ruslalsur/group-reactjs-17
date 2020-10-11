@@ -1,37 +1,36 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Header} from '../components/header'
-import {profileGetAction} from '../actions/profileActions'
+import {profilesGetAction} from '../actions/profilesActions'
 
 class HeaderContainerClass extends React.Component {
    componentDidMount() {
-      const {name} = this.props
+      const {author, getProfile} = this.props
 
-      if (name === undefined) {
-         this.props.getProfile()
+      if (author) {
+         getProfile()
       }
    }
 
    render() {
-      const {name} = this.props
-
+      const {author} = this.props
       return (
-         <Header name={name} />
+         <Header author={author} />
       )
    }
 }
 
 function mapStateToProps(state, ownProps) {
-   const {profile} = state.profileReducer
+   const {profile} = state.profilesReducer
 
    return {
-      name: profile.name
+      author: profile.name
    }
 }
 
 function mapDispatchToProps(dispatch) {
    return {
-      getProfile: () => dispatch(profileGetAction()),
+      getProfile: () => dispatch(profilesGetAction()),
    }
 }
 

@@ -7,7 +7,7 @@ import './header.sass'
 
 export class Header extends React.Component {
    render() {
-      const {name} = this.props
+      const {author} = this.props
 
       return (
          <>
@@ -21,7 +21,7 @@ export class Header extends React.Component {
                   <IconButton edge="start" color="inherit" aria-label="profile">
                      <PersonIcon color="action" />
                   </IconButton>
-                  <Box>{name}</Box>
+                  <Box>{author}</Box>
                </Link>
             </Paper>
          </>

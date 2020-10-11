@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {nanoid} from 'nanoid'
-import {Container, Typography, Grid, Paper, Box, IconButton, Backdrop, CircularProgress} from '@material-ui/core'
+import {Container, Typography, Grid, Paper, Box, Button, IconButton, Backdrop, CircularProgress} from '@material-ui/core'
 import PersonIcon from '@material-ui/icons/Person'
 import {Chats} from '../chats'
 import {Messages} from '../messages'
@@ -31,7 +31,11 @@ export class Messenger extends React.Component {
                </Backdrop>
             )
          } else if (isError) {
-            return (<div><h2>Error</h2><button onClick={getChats}>Повторить</button></div>)
+            return (
+               <Button variant="contained" color="primary"onClick={getChats}>
+                  Повторить запрос
+               </Button>
+            )
          } else {
             return (
                <Grid container spacing={2} alignItems="stretch" className="container">

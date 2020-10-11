@@ -4,7 +4,7 @@ import {nanoid} from 'nanoid'
 import {push} from 'connected-react-router'
 import {Messenger} from '../components/messenger'
 import {chatsLoadAction, chatsAddAction, chatsDelAction, setChatAsReaded, chatsMessageSendAction} from '../actions/chatsActions'
-import {profileGetAction} from '../actions/profileActions'
+import {profilesGetAction} from '../actions/profilesActions'
 
 class MessengerContainerClass extends React.Component {
    componentDidMount() {
@@ -60,7 +60,7 @@ class MessengerContainerClass extends React.Component {
 
 function mapStateToProps(state, ownProps) {
    const {chats, loading, error} = state.chatsReducer
-   const {profile} = state.profileReducer
+   const {profile} = state.profilesReducer
    const {match} = ownProps
 
    const chatsArray = []
@@ -93,7 +93,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
    return {
-      getProfile: () => dispatch(profileGetAction()),
+      getProfile: () => dispatch(profilesGetAction()),
       getChats: () => dispatch(chatsLoadAction()),
       addChatToStore: (id, title) => dispatch(chatsAddAction(id, title)),
       delChatFromStore: (id) => dispatch(chatsDelAction(id)),
