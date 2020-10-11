@@ -5,13 +5,7 @@ import CheckIcon from '@material-ui/icons/Check'
 import './sender.sass'
 
 export class Sender extends React.Component {
-   componentDidMount() {
-      const {author} = this.props
-      this.setState({author})
-   }
-
    state = {
-      author: '',
       text: ''
    }
 
@@ -34,7 +28,7 @@ export class Sender extends React.Component {
    }
 
    render() {
-      const {text, author} = this.state
+      const {text} = this.state
 
       return (
          <>
@@ -47,7 +41,7 @@ export class Sender extends React.Component {
                      id="text"
                      name="text"
                      value={text}
-                     label={author ? author : 'Выберите чат и пишите'}
+                     label='Новое сообщение'
                      fullWidth
                      rows={2}
                      rowsMax={2}

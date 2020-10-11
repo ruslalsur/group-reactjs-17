@@ -19,6 +19,14 @@ class MessengerContainerClass extends React.Component {
       }
    }
 
+   addChat = (title) => {
+      const {chats, addChatToStore, redirect} = this.props
+      const id = chats[chats.length - 1].id + 1
+
+      addChatToStore(id, title)
+      redirect(id)
+   }
+
    sendMessage = (message) => {
       const {messages, author, sendMessageToStore} = this.props
 
@@ -31,11 +39,15 @@ class MessengerContainerClass extends React.Component {
    }
 
    render() {
-      const {author, messages} = this.props
+      const {chats, chatId, messages, redirect, delChatFromStore} = this.props
 
       return (
          <Messenger
-            author={author}
+            chats={chats}
+            chatId={chatId}
+            addChat={this.addChat}
+            delChat={delChatFromStore}
+            redirect={redirect}
             messages={messages}
             sendMessage={this.sendMessage} />
       )
@@ -47,17 +59,16 @@ function mapStateToProps(state, ownProps) {
    const {profile} = state.profileReducer
    const {match} = ownProps
 
-   // const chatsArray = []
-   // for (let key in chats) {
-   //    if (chats.hasOwnProperty(key)) {
-   //       chatsArray.push({
-   //          id: chats[key].id,
-   //          title: chats[key].title,
-   //          readed: chats[key].readed
-   //       })
-   //    }
-   // }
-   // console.log(chatsArray);
+   const chatsArray = []
+   for (let key in chats) {
+      if (chats.hasOwnProperty(key)) {
+         chatsArray.push({
+            id: chats[key].id,
+            title: chats[key].title,
+            readed: chats[key].readed
+         })
+      }
+   }
 
    let messages = null
    if (match && chats[match.params.id]) {
@@ -66,7 +77,7 @@ function mapStateToProps(state, ownProps) {
 
    return {
       author: profile.name,
-      chats,
+      chats: chatsArray,
       messages,
       chatId: match
          ? match.params.id
@@ -78,6 +89,8 @@ function mapDispatchToProps(dispatch) {
    return {
       getProfile: () => dispatch(profileGetAction()),
       getChats: () => dispatch(chatsLoadAction()),
+      addChatToStore: (id, title) => dispatch(chatsAddAction(id, title)),
+      delChatFromStore: (id) => dispatch(chatsDelAction(id)),
       sendMessageToStore: (message) => dispatch(chatsMessageSendAction(message)),
       redirect: (chatId) => dispatch(push(`/chat/${chatId}`))
    }
