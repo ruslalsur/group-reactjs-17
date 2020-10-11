@@ -39,10 +39,14 @@ class MessengerContainerClass extends React.Component {
    }
 
    render() {
-      const {chats, chatId, messages, redirect, delChatFromStore} = this.props
+      const {isLoading, isError, chats, chatId, getChats,
+         messages, redirect, delChatFromStore} = this.props
 
       return (
          <Messenger
+            isLoading={isLoading}
+            isError={isError}
+            getChats={getChats}
             chats={chats}
             chatId={chatId}
             addChat={this.addChat}
@@ -55,7 +59,7 @@ class MessengerContainerClass extends React.Component {
 }
 
 function mapStateToProps(state, ownProps) {
-   const {chats} = state.chatsReducer
+   const {chats, loading, error} = state.chatsReducer
    const {profile} = state.profileReducer
    const {match} = ownProps
 
@@ -76,6 +80,8 @@ function mapStateToProps(state, ownProps) {
    }
 
    return {
+      isLoading: loading,
+      isError: error,
       author: profile.name,
       chats: chatsArray,
       messages,
