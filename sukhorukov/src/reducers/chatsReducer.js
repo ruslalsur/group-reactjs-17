@@ -1,22 +1,45 @@
 import update from 'react-addons-update'
 import {nanoid} from 'nanoid'
-import {CHATS_GET, CHATS_ADD, CHATS_DEL, SET_CHAT_READED_STATE, CHATS_MESSAGE_SEND} from '../actions/chatsActions'
-import {defaultChatsData} from '../helpers/defaultChatsData'
+import {
+   CHATS_LOAD_REQUEST,
+   CHATS_LOAD_SUCCESS,
+   CHATS_LOAD_FAILURE,
+   CHATS_ADD,
+   CHATS_DEL,
+   SET_CHAT_READED_STATE,
+   CHATS_MESSAGE_SEND} from '../actions/chatsActions'
+// import {defaultChatsData} from '../helpers/defaultChatsData'
 import {APP_NAME} from '../config/config.js'
 
 const initialState = {
+   loading: false,
+   error: false,
    chats: []
 }
 
 export const chatsReducer = (state = initialState, action) => {
    switch (action.type) {
 
-      // получение списка чатов по-умолчанию
-      case CHATS_GET:
-         return {
+      // получение списка чатов c json-сервера
+      case CHATS_LOAD_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                error: false,
+            }
+
+        case CHATS_LOAD_SUCCESS:
+        return {
             ...state,
-            chats: defaultChatsData
-         }
+            loading: false,
+            chats: action.payload
+        }
+        case CHATS_LOAD_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: true
+            }
 
       // добавление нового чата
       case CHATS_ADD:

@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {nanoid} from 'nanoid'
 import {push} from 'connected-react-router'
 import {Chats} from '../components/chats'
-import {chatsGetAction, chatsAddAction, chatsDelAction, setChatAsReaded, chatsMessageSendAction} from '../actions/chatsActions'
+import {chatsLoadAction, chatsAddAction, chatsDelAction, setChatAsReaded, chatsMessageSendAction} from '../actions/chatsActions'
 import {profileGetAction} from '../actions/profileActions'
 
 class ChatsContainerClass extends React.Component {
@@ -63,7 +63,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
    return {
       getProfile: () => dispatch(profileGetAction()),
-      getChats: () => dispatch(chatsGetAction()),
+      getChats: () => dispatch(chatsLoadAction()),
       addChatToStore: (id, title) => dispatch(chatsAddAction(id, title)),
       delChatFromStore: (id) => dispatch(chatsDelAction(id)),
       redirect: (chatId) => dispatch(push(`/chat/${chatId}`))
