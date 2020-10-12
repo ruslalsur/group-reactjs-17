@@ -7,16 +7,14 @@ class HeaderContainerClass extends React.Component {
    componentDidMount() {
       const {author, getProfile} = this.props
 
-      if (author) {
+      if (author === undefined) {
          getProfile()
       }
    }
 
    render() {
       const {author} = this.props
-      return (
-         <Header author={author} />
-      )
+      return <Header author={author} />
    }
 }
 
@@ -30,7 +28,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
    return {
-      getProfile: () => dispatch(profilesGetAction()),
+      getProfile: () => dispatch(profilesGetAction())
    }
 }
 

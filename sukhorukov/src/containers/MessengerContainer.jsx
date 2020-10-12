@@ -4,19 +4,16 @@ import {nanoid} from 'nanoid'
 import {push} from 'connected-react-router'
 import {Messenger} from '../components/messenger'
 import {chatsLoadAction, chatsAddAction, chatsDelAction, setChatAsReaded, chatsMessageSendAction} from '../actions/chatsActions'
-import {profilesGetAction} from '../actions/profilesActions'
 
 class MessengerContainerClass extends React.Component {
    componentDidMount() {
-      const {author, chats, getChats} = this.props
-
-      if (author === undefined) {
-         this.props.getProfile()
-      }
+      const {chats, getChats, redirect} = this.props
 
       if (!chats.length) {
          getChats()
       }
+
+      redirect(0)
    }
 
    addChat = (title) => {
@@ -25,6 +22,13 @@ class MessengerContainerClass extends React.Component {
 
       addChatToStore(id, title)
       redirect(id)
+   }
+
+   delChat = (id) => {
+      const {delChatFromStore, redirect} = this.props
+      redirect(0)
+
+      delChatFromStore(id)
    }
 
    sendMessage = (message) => {
@@ -40,7 +44,7 @@ class MessengerContainerClass extends React.Component {
 
    render() {
       const {isLoading, isError, chats, chatId, getChats,
-         messages, redirect, delChatFromStore} = this.props
+         messages, redirect, delChat} = this.props
 
       return (
          <Messenger
@@ -50,7 +54,7 @@ class MessengerContainerClass extends React.Component {
             chats={chats}
             chatId={chatId}
             addChat={this.addChat}
-            delChat={delChatFromStore}
+            delChat={this.delChat}
             redirect={redirect}
             messages={messages}
             sendMessage={this.sendMessage} />

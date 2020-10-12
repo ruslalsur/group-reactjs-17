@@ -8,7 +8,7 @@
     "dev-build": "webpack --mode development",
     "prod-build": "webpack --mode production",
     "dev-server": "webpack-dev-server --mode development --port 4000 --open",
-    "json-server": "json-server --port 3000 --watch db.json --delay 2000",
+    "json-server": "json-server --port 3000 --watch db.json --delay 1000",
     "start": "concurrently \"npm:dev-server\" \"npm:json-server\""
   },
   "keywords": [],

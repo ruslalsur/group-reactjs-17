@@ -20,7 +20,7 @@ export const appAnswerMiddleware = store => next => action => {
                   author: APP_NAME
                }
             ))
-         }, 4000)
+         }, 3000)
       }
     }
 

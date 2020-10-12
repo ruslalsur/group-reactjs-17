@@ -2,7 +2,7 @@
   "profiles": [
     {
       "id": 0,
-      "name": "Петя3"
+      "name": "Петя"
     }
   ],
   "chats": [
@@ -31,7 +31,7 @@
     },
     {
       "id": 1,
-      "author": "Вася",
+      "author": "geekMessenger",
       "text": "Сообщение в чат1",
       "chatId": 0
     },
@@ -43,7 +43,7 @@
     },
     {
       "id": 3,
-      "author": "Вася",
+      "author": "geekMessenger",
       "text": "Сообщение в чат2",
       "chatId": 1
     },
@@ -67,7 +67,7 @@
     },
     {
       "id": 7,
-      "author": "Вася",
+      "author": "geekMessenger",
       "text": "Сообщение в чат3",
       "chatId": 2
     }

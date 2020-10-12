@@ -1,10 +1,11 @@
 import React from 'react'
 import {push} from 'connected-react-router'
-import {Badge, Grid, IconButton, Paper} from '@material-ui/core'
+import {Typography, Box, Badge, Grid, IconButton, Paper} from '@material-ui/core'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import ChatIcon from '@material-ui/icons/Chat'
 import AddIcon from '@material-ui/icons/Add'
 import ClearIcon from '@material-ui/icons/Clear'
@@ -21,7 +22,6 @@ export class Chats extends React.Component {
 
       if (chats.length > 1) {
          delChat(id)
-         redirect(0)
       }
    }
 
@@ -35,25 +35,34 @@ export class Chats extends React.Component {
    render() {
       const {chatId, chats} = this.props
 
-      const chatList = chats.map((item) => {
+      const chatList = chats.map((chat) => {
          return (
-            <div className="listItem" key={item.id}>
-               <div onClick={() => this.choiseChatHandler(item.id)} className="link">
-                  <ListItem button selected={chatId == item.id ? true : false}>
-                     <ListItemIcon>
-                        <Badge color="error" badgeContent="1" invisible={item.readed}>
-                           <ChatIcon />
-                        </Badge>
-                     </ListItemIcon>
-                        <ListItemText>
-                           {item.title}
-                        </ListItemText>
-                        <IconButton onClick={() => this.delChatHandler(item.id)} color="secondary">
-                           <ClearIcon fontSize="small"/>
-                        </IconButton>
-                  </ListItem>
-               </div>
-            </div>
+            <ListItem
+               onClick={() => this.choiseChatHandler(chat.id)}
+               className="list-item"
+               selected={chatId == chat.id ? true : false}
+               key={chat.id}
+               button>
+               <ListItemIcon>
+                  <Badge color="error" badgeContent="1" invisible={chat.readed}>
+                     <ChatIcon color={chatId == chat.id ? 'secondary' : 'primary'} />
+                  </Badge>
+               </ListItemIcon>
+               <ListItemText>
+                  <Typography variant="body1"  color={chatId == chat.id ? 'secondary' : 'primary'}>
+                     {chat.title}
+                  </Typography>
+               </ListItemText>
+               <ListItemSecondaryAction>
+                 <IconButton
+                    onClick={() => this.delChatHandler(chat.id)}
+                    color={chatId == chat.id ? 'secondary' : 'primary'}
+                    edge="end"
+                    aria-label="delete">
+                   <ClearIcon fontSize="small"/>
+                 </IconButton>
+               </ListItemSecondaryAction>
+            </ListItem>
          )
       })
 

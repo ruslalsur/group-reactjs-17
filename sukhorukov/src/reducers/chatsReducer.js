@@ -42,6 +42,20 @@ export const chatsReducer = (state = initialState, action) => {
              error: true
          }
 
+      // переключение бейджика непрочитанности сообщений
+      case SET_CHAT_READED_STATE:
+         if (state.chats.length) {
+            return update(state, {
+               chats: {
+                  [action.chatId]: {
+                     readed: {$set: action.readed}
+                  }
+               }
+            })
+         }
+
+         return state
+
       // добавление нового чата
       case CHATS_ADD:
          return update(state, {
@@ -62,17 +76,7 @@ export const chatsReducer = (state = initialState, action) => {
          chats.splice(action.id, 1)
          chats.filter((chat, index) => chat.id = index)
 
-         return {chats}
-
-      // переключение бейджика непрочитанности сообщений
-      case SET_CHAT_READED_STATE:
-         return update(state, {
-            chats: {
-               [action.chatId]: {
-                  readed: {$set: action.readed}
-               }
-            }
-         })
+         return update(state, {chats: {$set: chats}})
 
       // добавление нового сообщения в чат
       case CHATS_MESSAGE_SEND:
