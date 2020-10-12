@@ -1,6 +1,6 @@
 import React from 'react'
 import {push} from 'connected-react-router'
-import {Typography, Box, Badge, Grid, IconButton, Paper} from '@material-ui/core'
+import {Typography, Badge, Grid, IconButton, Paper} from '@material-ui/core'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'

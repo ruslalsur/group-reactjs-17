@@ -1,4 +1,3 @@
-// export const CHATS_LOAD = 'CHATS_LOAD'
 export const CHATS_LOAD_REQUEST = 'CHATS_LOAD_REQUEST'
 export const CHATS_LOAD_SUCCESS = 'CHATS_LOAD_SUCCESS'
 export const CHATS_LOAD_FAILURE = 'CHATS_LOAD_FAILURE'
@@ -8,20 +7,7 @@ export const CHATS_DEL = 'CHATS_DEL'
 export const CHATS_MESSAGE_SEND = 'CHATS_MESSAGE_SEND'
 export const SET_CHAT_READED_STATE = 'SET_CHAT_READED_STATE'
 
-// // получение данных с json-сервера с использованием redux-api-middleware
-// export const chatsLoadAction = () => createAction({
-//     endpoint: 'http://localhost:3000/chats?_embed=messages',
-//     method: 'GET',
-//     // body: JSON.stringify({}) // при POST-запросе
-//     headers: { 'Content-Type': 'application/json' },
-//     types: [
-//         CHATS_LOAD_REQUEST,
-//         CHATS_LOAD_SUCCESS,
-//         CHATS_LOAD_FAILURE
-//     ]
-// })
-
-// получение данных с json-сервера с использованием redux-thunk
+// получение данных с json-сервера с использованием 'redux-thunk' middleware
 export const chatsLoadRequestAction = () => ({
     type: CHATS_LOAD_REQUEST,
 })

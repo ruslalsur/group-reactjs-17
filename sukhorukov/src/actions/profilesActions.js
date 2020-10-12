@@ -8,6 +8,7 @@ export const PROFILES_UPDATE_REQUEST = 'PROFILES_UPDATE_REQUEST'
 export const PROFILES_UPDATE_SUCCESS = 'PROFILES_UPDATE_SUCCESS'
 export const PROFILES_UPDATE_FAILURE = 'PROFILES_UPDATE_FAILURE'
 
+// получение данных с json-сервера с использованием 'redux-api-middleware'
 export const profilesGetAction = () => createAction({
     endpoint: 'http://localhost:3000/profiles',
     method: 'GET',
@@ -19,6 +20,7 @@ export const profilesGetAction = () => createAction({
     ]
 })
 
+// обновление данных на json-сервере с использованием 'redux-api-middleware'
 export const profilesUpdateAction = (name) => createAction({
     endpoint: 'http://localhost:3000/profiles/0',
     method: 'PATCH',

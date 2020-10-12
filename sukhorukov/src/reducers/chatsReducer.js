@@ -1,5 +1,5 @@
 import update from 'react-addons-update'
-import {nanoid} from 'nanoid'
+import {APP_NAME} from '../config/config.js'
 import {
    CHATS_LOAD_REQUEST,
    CHATS_LOAD_SUCCESS,
@@ -8,8 +8,6 @@ import {
    CHATS_DEL,
    SET_CHAT_READED_STATE,
    CHATS_MESSAGE_SEND} from '../actions/chatsActions'
-// import {defaultChatsData} from '../helpers/defaultChatsData'
-import {APP_NAME} from '../config/config.js'
 
 const initialState = {
    loading: false,

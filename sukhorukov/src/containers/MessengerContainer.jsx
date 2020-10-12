@@ -3,7 +3,8 @@ import {connect} from 'react-redux'
 import {nanoid} from 'nanoid'
 import {push} from 'connected-react-router'
 import {Messenger} from '../components/messenger'
-import {chatsLoadAction, chatsAddAction, chatsDelAction, setChatAsReaded, chatsMessageSendAction} from '../actions/chatsActions'
+import {chatsLoadAction, chatsAddAction, chatsDelAction,
+   setChatAsReaded, chatsMessageSendAction} from '../actions/chatsActions'
 
 class MessengerContainerClass extends React.Component {
    componentDidMount() {

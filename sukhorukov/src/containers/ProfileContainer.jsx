@@ -1,6 +1,5 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {nanoid} from 'nanoid'
 import {Profile} from '../components/profile'
 import {profilesUpdateAction} from '../actions/profilesActions'
 

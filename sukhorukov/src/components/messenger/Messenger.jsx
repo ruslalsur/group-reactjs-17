@@ -1,7 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {nanoid} from 'nanoid'
-import {Container, Typography, Grid, Paper, Box, Button, IconButton, Backdrop, CircularProgress} from '@material-ui/core'
+import {Container, Typography, Grid, Paper, Box, Button, IconButton,
+   Backdrop, CircularProgress} from '@material-ui/core'
 import PersonIcon from '@material-ui/icons/Person'
 import {Chats} from '../chats'
 import {Messages} from '../messages'
@@ -17,7 +18,8 @@ export class Messenger extends React.Component {
 
    render() {
       const {
-         getChats, isLoading, isError, chatId, chats, addChat, delChat, redirect, messages, sendMessage } = this.props
+         getChats, isLoading, isError, chatId, chats, addChat, delChat,
+         redirect, messages, sendMessage } = this.props
 
          if (isLoading) {
             return (
@@ -25,16 +27,16 @@ export class Messenger extends React.Component {
                   <CircularProgress size={25} />
                   <span>
                      <Box ml={2}>
-                        <Typography variant="h5" color="primary">Loading ...</Typography>
+                        <Typography variant="h5" color="primary">Подождите ...</Typography>
                      </Box>
                   </span>
                </Backdrop>
             )
          } else if (isError) {
             return (
-               <Button variant="contained" color="primary"onClick={getChats}>
-                  Повторить запрос
-               </Button>
+               <Typography variant="h5" color="primary">
+                  Проблемы на сервере, повторите запрос позднее (кнопка в заголовке) ...
+               </Typography>
             )
          } else {
             return (

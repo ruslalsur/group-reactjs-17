@@ -13,16 +13,18 @@ class HeaderContainerClass extends React.Component {
    }
 
    render() {
-      const {author} = this.props
-      return <Header author={author} />
+      const {author, isLoading, isError, getProfile} = this.props
+      return <Header author={author} isLoading={isLoading} isError={isError} getProfile={getProfile} />
    }
 }
 
 function mapStateToProps(state, ownProps) {
-   const {profile} = state.profilesReducer
+   const {profile, loading, error} = state.profilesReducer
 
    return {
-      author: profile.name
+      author: profile.name,
+      isLoading: loading,
+      isError: error
    }
 }
 

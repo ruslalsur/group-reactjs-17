@@ -7,6 +7,7 @@ export const chatsBadgingMiddleware = store => next => action => {
 
          if (chatId !== store.getState().router.location.pathname.split('/').pop())
             store.dispatch(setChatReadedState(chatId, false))
+            
          break
 
       case '@@router/LOCATION_CHANGE':

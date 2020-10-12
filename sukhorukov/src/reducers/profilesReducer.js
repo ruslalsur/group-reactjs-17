@@ -1,9 +1,7 @@
 import update from 'react-addons-update'
-import {nanoid} from 'nanoid'
 import {PROFILES_GET_REQUEST, PROFILES_GET_SUCCESS, PROFILES_GET_FAILURE,
    PROFILES_UPDATE_REQUEST, PROFILES_UPDATE_SUCCESS, PROFILES_UPDATE_FAILURE,}
    from '../actions/profilesActions'
-// import {profile} from '../helpers/defaultProfileData'
 
 const initialState = {
    loading: false,
@@ -57,9 +55,6 @@ export const profilesReducer = (state = initialState, action) => {
              loading: false,
              error: true
          }
-
-      // case PROFILES_UPDATE:
-      //    return update(state, {profile: {name: {$set: action.name}}})
 
       default:
          return state
