@@ -5,10 +5,9 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import ChatIcon from '@material-ui/icons/Chat'
 import AddIcon from '@material-ui/icons/Add'
-import ClearIcon from '@material-ui/icons/Clear'
+import RemoveIcon from '@material-ui/icons/Remove'
 import './chats.sass'
 
 export class Chats extends React.Component {
@@ -53,15 +52,6 @@ export class Chats extends React.Component {
                      {chat.title}
                   </Typography>
                </ListItemText>
-               <ListItemSecondaryAction>
-                 <IconButton
-                    onClick={() => this.delChatHandler(chat.id)}
-                    color={chatId == chat.id ? 'secondary' : 'primary'}
-                    edge="end"
-                    aria-label="delete">
-                   <ClearIcon fontSize="small"/>
-                 </IconButton>
-               </ListItemSecondaryAction>
             </ListItem>
          )
       })
@@ -79,6 +69,12 @@ export class Chats extends React.Component {
                   variant="round"
                   color="primary">
                      <AddIcon />
+               </IconButton>
+               <IconButton
+                  onClick={() => this.delChatHandler(chatId)}
+                  variant="round"
+                  color="secondary">
+                     <RemoveIcon />
                </IconButton>
             </Grid>
          </Grid>

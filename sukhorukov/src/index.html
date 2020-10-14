@@ -1,11 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="geekMessenger">
+    <meta name="keywords" content="React.js, chat">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>geekMessenger</title>
+
     <base href="/">
+
+    <link rel="manifest" href="manifest.json">
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').then(function(registration) {
+
+                //Запрос разрешения на отправку уведомлений
+                Notification.requestPermission(function(result) {
+                    if(result === 'granted') {
+                        navigator.serviceWorker.ready.then(function(registration) {
+                            registration.showNotification('Test first message')
+                        })
+                    }
+                })
+
+                console.log('serviceWorker registration success', registration)
+            }, function(err) {
+                console.log('serviceWorker registration failure', err)
+            })
+        }
+
+        //Отслеживание установок
+        window.addEventListener('appinstalled', function(event) {
+            //fetch('<url>')
+            console.log('!App has instaled:', event)
+        })
+
+        //Вызывается, если приложение не было установлено
+        window.addEventListener('beforeinstallprompt', function(event) {
+            console.log('!App beforeinstallprompt:', event)
+        })
+    </script>
 </head>
+
 <body>
     <div id="root" class="root"></div>
 </body>

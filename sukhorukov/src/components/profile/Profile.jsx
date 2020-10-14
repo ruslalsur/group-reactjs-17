@@ -21,21 +21,14 @@ export class Profile extends React.Component {
       return (
          <Paper elevation={3}>
             <Box className="content">
-               <Grid container alignItems="baseline" spacing={3}>
-                  <Grid item xs={12}>
-                     <Typography variant="h4" color="primary">Профиль автора по имени {author}</Typography>
+               <Grid container  spacing={1}>
+                  <Grid item xs="auto">
+                     <Typography variant="h6" color="primary">Профиль автора по имени:</Typography>
                   </Grid>
-                  <Grid item zeroMinWidth xs={3}>
-                  <Typography variant="subtitle1" color="primary">Автор творит под именем: </Typography>
+                  <Grid item xs="auto">
+                     <Typography variant="h5" color="textSecondary">{author}</Typography>
                   </Grid>
-                  <Grid item zeroMinWidth xs={3}>
-                  <Typography variant="h5" color="textSecondary">{author}</Typography>
-                  </Grid>
-               </Grid>
-
-               <Grid container alignItems="baseline" spacing={3}>
-                  <Grid item xs={3} />
-                  <Grid item xs={3}>
+                  <Grid item xs="auto">
                      <Button
                         onClick={this.profileUpdateHandler}
                         variant="contained"
