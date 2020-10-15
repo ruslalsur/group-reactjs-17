@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="description" content="gMessenger">
     <meta name="keywords" content="React.js, chat">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
 
     <title>gMessenger</title>
 
@@ -26,7 +26,7 @@
                     }
                 })
 
-                console.log('serviceWorker registration success', registration)
+                console.log('serviceWorker registration success')
             }, function(err) {
                 console.log('serviceWorker registration failure', err)
             })
@@ -45,7 +45,7 @@
     </script>
 </head>
 
-<body>
+<body style="height: 100%">
     <div id="root" class="root"></div>
 </body>
 </html>

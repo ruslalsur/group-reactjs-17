@@ -1,4 +1,4 @@
-const cacheName = 'gm-cache-v1'
+const cacheName = 'gm-cache-v2'
 const staticAssets = [
     './',
     './app.css',

@@ -5,8 +5,8 @@
   "main": "index.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev-build": "webpack --mode development",
-    "prod-build": "webpack --mode production",
+    "dev": "webpack --mode development",
+    "prod": "webpack --mode production",
     "dev-server": "webpack-dev-server --mode development --port 4000 --open",
     "json-server": "json-server --port 3000 --watch db.json --delay 1000",
     "http-server": "http-server dist",
