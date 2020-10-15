@@ -1,4 +1,4 @@
-const cacheName = 'chat-v2'
+const cacheName = 'gm-cache-v1'
 const staticAssets = [
     './',
     './app.css',
@@ -46,11 +46,11 @@ async function networkAndCache(req) {
     }
 }
 
-self.addEventListener('push', (event) => {
+self.addEventListener('push', e => {
     let body
 
-    if (event.data) {
-        body = event.data.text()
+    if (e.data) {
+        body = e.data.text()
     } else {
         body = 'Push message no payload'
     }
@@ -66,7 +66,7 @@ self.addEventListener('push', (event) => {
         ]
     }
 
-    event.waitUntil(
+    e.waitUntil( 
         self.registration.showNotification('Test push message', options)
     )
 })

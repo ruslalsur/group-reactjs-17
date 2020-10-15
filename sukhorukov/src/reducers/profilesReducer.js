@@ -24,7 +24,7 @@ export const profilesReducer = (state = initialState, action) => {
         return {
             ...state,
             loading: false,
-            profile: action.payload[0]
+            profile: action.payload
         }
 
       case PROFILES_GET_FAILURE:

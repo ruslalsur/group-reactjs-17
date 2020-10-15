@@ -1,6 +1,6 @@
 {
-    "name": "geekMessenger",
-    "short_name": "gMsg",
+    "name": "gMessenger",
+    "short_name": "gm",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#ffffff",

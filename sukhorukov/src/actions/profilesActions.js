@@ -10,7 +10,7 @@ export const PROFILES_UPDATE_FAILURE = 'PROFILES_UPDATE_FAILURE'
 
 // получение данных с json-сервера с использованием 'redux-api-middleware'
 export const profilesGetAction = () => createAction({
-    endpoint: 'http://localhost:3000/profiles',
+    endpoint: 'http://localhost:3000/profiles/0',
     method: 'GET',
     headers: {'Content-Type': 'application/json'},
     types: [
