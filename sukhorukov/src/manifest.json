@@ -1,0 +1,26 @@
+{
+    "name": "gMessenger",
+    "short_name": "gm",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "green",
+    "description": "React chat geekMessenger",
+    "icons": [
+        {
+            "src": "icons/chat512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/chat64.png",
+            "sizes": "64x64",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/chat16.png",
+            "sizes": "16x16",
+            "type": "image/png"
+        }
+    ]
+}

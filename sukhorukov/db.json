@@ -1,0 +1,75 @@
+{
+  "profiles": [
+    {
+      "id": 0,
+      "name": "Vasia"
+    }
+  ],
+  "chats": [
+    {
+      "id": 0,
+      "title": "Чат1",
+      "readed": true
+    },
+    {
+      "id": 1,
+      "title": "Чат2",
+      "readed": true
+    },
+    {
+      "id": 2,
+      "title": "Чат3",
+      "readed": true
+    }
+  ],
+  "messages": [
+    {
+      "id": 0,
+      "author": "Вася",
+      "text": "Сообщение в чат1",
+      "chatId": 0
+    },
+    {
+      "id": 1,
+      "author": "geekMessenger",
+      "text": "Сообщение в чат1",
+      "chatId": 0
+    },
+    {
+      "id": 2,
+      "author": "Вася",
+      "text": "Сообщение в чат2",
+      "chatId": 1
+    },
+    {
+      "id": 3,
+      "author": "geekMessenger",
+      "text": "Сообщение в чат2",
+      "chatId": 1
+    },
+    {
+      "id": 4,
+      "author": "Вася",
+      "text": "Сообщение в чат3",
+      "chatId": 2
+    },
+    {
+      "id": 5,
+      "author": "Вася",
+      "text": "Сообщение в чат1",
+      "chatId": 0
+    },
+    {
+      "id": 6,
+      "author": "Вася",
+      "text": "Сообщение в чат3",
+      "chatId": 2
+    },
+    {
+      "id": 7,
+      "author": "geekMessenger",
+      "text": "Сообщение в чат3",
+      "chatId": 2
+    }
+  ]
+}

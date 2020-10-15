@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="gMessenger">
+    <meta name="keywords" content="React.js, chat">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
+
+    <title>gMessenger</title>
+
+    <base href="/">
+
+    <link rel="manifest" href="manifest.json">
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').then(function(registration) {
+
+                //Запрос разрешения на отправку уведомлений
+                Notification.requestPermission(function(result) {
+                    if(result === 'granted') {
+                        navigator.serviceWorker.ready.then(function(registration) {
+                            registration.showNotification('Test first message')
+                        })
+                    }
+                })
+
+                console.log('serviceWorker registration success')
+            }, function(err) {
+                console.log('serviceWorker registration failure', err)
+            })
+        }
+
+        //Отслеживание установок
+        window.addEventListener('appinstalled', function(event) {
+            //fetch('<url>')
+            console.log('!App has instaled:', event)
+        })
+
+        //Вызывается, если приложение не было установлено
+        window.addEventListener('beforeinstallprompt', function(event) {
+            // console.log('!App beforeinstallprompt:', event)
+        })
+    </script>
+</head>
+
+<body style="height: 100%">
+    <div id="root" class="root"></div>
+</body>
+</html>
