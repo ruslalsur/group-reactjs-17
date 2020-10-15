@@ -18,8 +18,7 @@ export class Chats extends React.Component {
 
    delChatHandler = (id) => {
       const {chats, redirect, delChat} = this.props
-
-      if (chats.length > 1) {
+      if (chats.length > 1 && id) {
          delChat(id)
       }
    }

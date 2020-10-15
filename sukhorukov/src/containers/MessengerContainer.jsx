@@ -14,7 +14,7 @@ class MessengerContainerClass extends React.Component {
          getChats()
       }
 
-      redirect(0)
+      // redirect(0)
    }
 
    addChat = (title) => {
